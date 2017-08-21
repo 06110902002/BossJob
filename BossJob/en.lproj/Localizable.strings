@@ -1,0 +1,12 @@
+/* 
+  Localizable.strings
+  BossJob
+
+  Created by 刘小兵 on 2017/8/17.
+  Copyright © 2017年 刘小兵. All rights reserved.
+*/
+
+"home_job" = "Job";
+"home_company" = "Company";
+"home_message" = "Messages";
+"home_mine" = "Mine";

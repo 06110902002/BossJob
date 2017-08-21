@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>areas</key>
+		<array>
+			<string>全上海</string>
+		</array>
+		<key>name</key>
+		<string>上海</string>
+	</dict>
+	<dict>
+		<key>areas</key>
+		<array>
+			<string>浦东新区</string>
+			<string>张江</string>
+			<string>陆家嘴</string>
+			<string>金桥</string>
+			<string>塘桥</string>
+		</array>
+		<key>name</key>
+		<string>浦东新区</string>
+	</dict>
+	<dict>
+		<key>areas</key>
+		<array>
+			<string>全徐汇区</string>
+			<string>漕河经</string>
+			<string>徐家汇</string>
+			<string>田林</string>
+			<string>龙华</string>
+			<string>上海南站</string>
+			<string>枫林路</string>
+		</array>
+		<key>name</key>
+		<string>徐汇区</string>
+	</dict>
+	<dict>
+		<key>areas</key>
+		<array>
+			<string>全长宁区</string>
+			<string>中山公园</string>
+			<string>北新经</string>
+			<string>虹桥</string>
+			<string>古北</string>
+			<string>天山路</string>
+		</array>
+		<key>name</key>
+		<string>长宁区</string>
+	</dict>
+</array>
+</plist>
