@@ -27,7 +27,7 @@ typedef NS_ENUM(NSInteger, FilterType) {
     
 };
 
-@interface JobVC : BaseViewController<FilterChangeListener,UITableViewDataSource,UITableViewDelegate,UIGestureRecognizerDelegate>
+@interface JobVC : BaseViewController<FilterChangeListener,UITableViewDataSource,UITableViewDelegate,UIGestureRecognizerDelegate,CAAnimationDelegate>
 
 @property(nonatomic,strong) UIButton* leftBtn;
 
@@ -41,23 +41,13 @@ typedef NS_ENUM(NSInteger, FilterType) {
 
 @property (nonatomic, strong) NSMutableArray *jobDataSource;
 
-
-@property(nonatomic,strong) UITableView* leftFilterListView;
-
-@property(nonatomic,strong) UITableView* rightFilterListView;
-
-@property (nonatomic, strong) NSMutableArray *leftDataSource;
-
-@property (nonatomic, strong) NSMutableArray *rightDataSource;
-
-
 @property (nonatomic, strong) NSString *areaName;
 
-@property (nonatomic, strong) NSMutableArray *areaOrMetroLineArray;
+@property(nonatomic,assign) NSInteger nCurPageIndex;        //记录当前过滤页卡，方便蒙版点击移除操作
 
-//公司过滤条件标签列表融资阶段 标签列表
-@property (nonatomic, strong) NSMutableArray *financingBtnList;
-@property (nonatomic, strong) NSMutableArray *compSizeBtnList;
+@property(nonatomic,strong) CABasicAnimation *closeAnim;
+
+
 
 
 -(void) initNavBar;
@@ -65,34 +55,6 @@ typedef NS_ENUM(NSInteger, FilterType) {
 -(void) initJobListView;
 
 
-/**
- 加载城市的商圈与地铁线路资源文件，即加载左边过滤数据
- */
--(void) loadAreaRes;
-
-
-/**
- 根据值获取plist中对应的数组信息
-
- @param keyValue  输入键值
- @return keyValue key在plist文件所对应的值
- */
--(NSMutableArray*) getDetailAreaOrMetroLineInfo:(NSString*) keyValue;
-
-
-/**
- 加载公司过滤条件数据，主要生成标签流
- */
--(void) loadCompanyFilterData;
-
-
-/**
- 工厂模式构建筛选对象数组
-
- @param dataList 过滤内容
- @return 构建好的UIbutton对象列表
- */
--(NSMutableArray*) buildCompanyFilterBtn:(NSArray*) dataList;
 
 
 

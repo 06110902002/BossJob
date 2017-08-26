@@ -98,7 +98,6 @@
     UIButton *lastButton = self.buttonList.lastObject;
     self.height = CGRectGetMaxY(lastButton.frame) + self.colMargin;  //更新下本容器的高度
     
-    
 }
 
 

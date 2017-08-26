@@ -10,6 +10,8 @@
 #import "Constants.h"
 #import "CityOrMetroModel.h"
 #import "PosLeftFilterCell.h"
+#import "PosRightFilterCell.h"
+#import "PosFilterModel.h"
 
 
 static const int POS_BUSINESS_CIRCLE_BUTTON = 6;
@@ -61,7 +63,7 @@ static const int NEW_NEW_BUTTON = 5;
     
     [self loadAreaRes];
 
-    
+    self.singalDelegate = self;
     
     //添加商圈筛选按钮
     UIButton* businessBtn = [[UIButton alloc] initWithFrame:CGRectMake(0.0, 0.0, SCREEN_WIDTH / 2, 40)];
@@ -125,6 +127,7 @@ static const int NEW_NEW_BUTTON = 5;
     
     self.rightFilterListView = [[UITableView alloc] initWithFrame:CGRectMake(SCREEN_WIDTH *2 / 5, 40,  SCREEN_WIDTH * 3 / 5, 225)];
     self.rightFilterListView.tag = RIGHT_TABLEVIEW;
+    self.rightFilterListView.backgroundColor = [UIColor colorWithRed:234.0 / 255.0 green:249.0 / 255.0 blue:249.0 / 255.0 alpha:1.0];
     self.rightFilterListView.delegate = self;
     self.rightFilterListView.dataSource = self;
     self.rightFilterListView.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -134,7 +137,6 @@ static const int NEW_NEW_BUTTON = 5;
     
     
     //添加重置确定按钮
-    
     UIButton* resetBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 265, SCREEN_WIDTH / 2, 40.0)];
     resetBtn.tag = RESET_BUTTON;
     [resetBtn setTitle:@"重置" forState:UIControlStateNormal];
@@ -174,13 +176,24 @@ static const int NEW_NEW_BUTTON = 5;
                 
                 if([key isEqualToString:@"name"]){
                     
-                    [self.leftDataSource addObject:values];
+                    PosFilterModel* data = [[PosFilterModel alloc] init];
+                    data.sAddress = values;
+                    [self.leftDataSource addObject:data];
+                     //[self.leftDataSource addObject:values];
                 }
                 NSLog(@"418---------key :%@  value:%@",key,values);
             }];
             
             
         }
+        
+        //初始化时添加，第0项进来
+        NSString* key = [(PosFilterModel*)[self.leftDataSource objectAtIndex:0] sAddress];
+        //先清空地区--详细信息映射字典，再构建
+        if(![self.area_detailDict objectForKey:key]){
+            [self.area_detailDict setValue:[self getDetailAreaOrMetroLineInfo:key] forKey:key];
+        }
+
     }
 }
 
@@ -195,7 +208,14 @@ static const int NEW_NEW_BUTTON = 5;
         
         if([[cityMetro areaOrMetroLineName] isEqualToString:keyValue]){
             
-            [tmpArray addObjectsFromArray:[cityMetro areasOrMetroLineArr]];
+            //[tmpArray addObjectsFromArray:[cityMetro areasOrMetroLineArr]];
+            
+            [[cityMetro areasOrMetroLineArr ] enumerateObjectsUsingBlock:^(NSString* obj,NSUInteger idx,BOOL* stop){
+                
+                PosFilterModel* data = [[PosFilterModel alloc] init];
+                data.sAddress = obj;
+                [tmpArray addObject:data];
+            }];
         }
     }
     
@@ -221,6 +241,15 @@ static const int NEW_NEW_BUTTON = 5;
     return _rightDataSource;
     
 }
+-(NSMutableDictionary*) area_detailDict{
+    
+    if(!_area_detailDict){
+        _area_detailDict = [[NSMutableDictionary alloc] init];
+    }
+    return _area_detailDict;
+}
+//-------------------laz load end ----------------
+
 -(void)onClickListener:(UIButton*) sender{
     
     switch(sender.tag){
@@ -228,6 +257,74 @@ static const int NEW_NEW_BUTTON = 5;
         case RESET_BUTTON:{}break;
             
         case CONFIRM_BUTTON:{}break;
+            
+            
+        case POS_BUSINESS_CIRCLE_BUTTON:{
+            
+            UIButton *businessBtn = (UIButton *)[positionStrategy viewWithTag:POS_BUSINESS_CIRCLE_BUTTON];
+            
+            //修改文本为绿色
+            UILabel* businessLabel = [(UILabel*) businessBtn subviews][1];
+            businessLabel.textColor = [UIColor greenColor];
+            
+            //当少于3说明没有下划线
+            if([[businessBtn subviews] count] < 3){
+                
+                UIImageView* bootomLine = [[UIImageView alloc] initWithFrame:CGRectMake(SCREEN_WIDTH / 4 - 40, 37, 80, 3)];
+                [bootomLine setBackgroundColor:[UIColor greenColor]];
+                bootomLine.tag = POS_BOTTOM_LINE;
+                [businessBtn addSubview:bootomLine];
+            }
+            
+            //再调整地铁栏样式
+            UIButton *metroBtn = (UIButton *)[positionStrategy viewWithTag:POS_METRO_BUTTON];
+            //修改文本为绿色
+            UILabel* metroLabel = [(UILabel*) metroBtn subviews][1];
+            metroLabel.textColor = [UIColor grayColor];
+            
+            //当大于3移除下划线
+            if([[metroBtn subviews] count] >= 3){
+                [[metroBtn subviews].lastObject removeFromSuperview];
+            }
+            
+            
+            
+            
+        }
+            break;
+            
+            
+        case POS_METRO_BUTTON:{
+            
+            UIButton *metroBtn = (UIButton *)[positionStrategy viewWithTag:POS_METRO_BUTTON];
+            
+            //修改文本为绿色
+            UILabel* metroLabel = [(UILabel*) metroBtn subviews][1];
+            metroLabel.textColor = [UIColor greenColor];
+            
+            //当少于3说明没有下划线
+            if([[metroBtn subviews] count] < 3){
+                
+                UIImageView* bootomLine = [[UIImageView alloc] initWithFrame:CGRectMake(SCREEN_WIDTH / 4 - 40, 37, 80, 3)];
+                [bootomLine setBackgroundColor:[UIColor greenColor]];
+                bootomLine.tag = POS_BOTTOM_LINE;
+                [metroBtn addSubview:bootomLine];
+            }
+            
+            //再调整地铁栏样式
+            UIButton *businessBtn = (UIButton *)[positionStrategy viewWithTag:POS_BUSINESS_CIRCLE_BUTTON];
+            //修改文本为绿色
+            UILabel* businessLabel = [(UILabel*) businessBtn subviews][1];
+            businessLabel.textColor = [UIColor grayColor];
+            
+            //当大于3移除下划线
+            if([[businessBtn subviews] count] >= 3){
+                [[businessBtn subviews].lastObject removeFromSuperview];
+            }
+            
+            
+        }
+            break;
     
     }
     
@@ -245,7 +342,7 @@ static const int NEW_NEW_BUTTON = 5;
         case RIGHT_TABLEVIEW:
             
             return self.rightDataSource.count;
-            
+        
         default:
             return 0;
             
@@ -254,6 +351,7 @@ static const int NEW_NEW_BUTTON = 5;
     
 }
 
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     
@@ -261,25 +359,31 @@ static const int NEW_NEW_BUTTON = 5;
             
         case LEFT_TABLEVIEW:{
             
-            PosLeftFilterCell* cell = [[PosLeftFilterCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"LeftFilterItem"];
+            self.leftCell = [[PosLeftFilterCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"LeftFilterItem"];
             
-            NSString* data = ((NSString* )self.leftDataSource[indexPath.row]);
+//            NSString* data = ((NSString* )self.leftDataSource[indexPath.row]);
+//            
+//            self.leftCell.textLabel.text = data;
             
-            cell.textLabel.text = data;
+            PosFilterModel* data = (PosFilterModel*)self.leftDataSource[indexPath.row];
             
-            return cell;
+            [self.leftCell bindData:data];
+            
+            return self.leftCell;
         }
             
         case RIGHT_TABLEVIEW:{
             
-            PosLeftFilterCell* cell = [[PosLeftFilterCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"RightFilterItem"];
+            self.rightCell = [[PosRightFilterCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"RightFilterItem"];
             
-            NSString* data = ((NSString* )self.rightDataSource[indexPath.row]);
+            //NSString* data = ((NSString* )self.rightDataSource[indexPath.row]);
+            //cell.textLabel.text = data;
             
-            cell.textLabel.text = data;
-            cell.backgroundColor = [UIColor grayColor];
+            PosFilterModel* data = (PosFilterModel*)self.rightDataSource[indexPath.row];
             
-            return cell;
+            [self.rightCell bindData:data];
+            
+            return  self.rightCell;
         }
             
             
@@ -304,9 +408,14 @@ static const int NEW_NEW_BUTTON = 5;
             
             [self.rightDataSource removeAllObjects];
             
-            [self.rightDataSource addObjectsFromArray:[self getDetailAreaOrMetroLineInfo:[self.leftDataSource objectAtIndex:indexPath.row]]];
-            
+            NSString* key = [(PosFilterModel*)[self.leftDataSource objectAtIndex:indexPath.row] sAddress];
+            [self.rightDataSource addObjectsFromArray:[self getDetailAreaOrMetroLineInfo:key]];
             [self.rightFilterListView reloadData];
+            
+            //先清空地区--详细信息映射字典，再构建
+            if(![self.area_detailDict objectForKey:key]){
+                [self.area_detailDict setValue:[self getDetailAreaOrMetroLineInfo:key] forKey:key];
+            }
         }
             break;
             
@@ -328,6 +437,128 @@ static const int NEW_NEW_BUTTON = 5;
         default:
             return 0;
     }
+    
+}
+
+-(void) recycRes{
+    
+    if(self.rightCell){
+        [self.rightCell recycRes];
+    }
+    
+}
+
+//--------------实现消息观察协议接口--主要用于左右2个uitableView 中cell中的状态更新-------------
+-(NSString*) registerSubject:(NSString *)subject{
+    
+    return subject;
+
+}
+
+/**
+ 更新右边筛选框，打勾标志，更新逻辑如下：
+ 1.勾选第0项，本组其他项，均为不选中状态。
+ 2.勾选第1~n项,将勾选的项设置为选中状态，并将第0项，置为不勾选状态
+ 
+ 更新左边列表的逻辑为：
+ 1.右边勾选第0项，左边列表不显示选中条数
+ 2.右边勾选的是第1~n项，将选中的条数更新到左边去。
+ 
+ 以上更新状态由点击右边列表项发起
+
+ @param msg 获取到的点击项
+ */
+-(void) update:(NSObject*) msg{
+
+    //先处理右边列表选中项状态，获取到右边状态项之后再显示左边选中条数
+    [self.rightDataSource enumerateObjectsUsingBlock:^(PosFilterModel* obj,NSUInteger idx,BOOL* stop){
+    
+        NSLog(@"442------------UItableView收到的信息为:%@   在列表中的索引为:%ld",msg,idx);
+        
+        if([msg isEqual:[obj sAddress]]){
+            
+            if(idx == 0){
+                
+                obj.select = !obj.select;
+                NSIndexPath *path = [NSIndexPath indexPathForRow:idx inSection:0];
+                [self.rightFilterListView reloadRowsAtIndexPaths:@[path] withRowAnimation:UITableViewRowAnimationNone];
+            
+                for(int i = 1; i < [self.rightDataSource count]; i ++){
+                    ((PosFilterModel*)self.rightDataSource[i]).select = NO;
+                }
+                
+                [self.rightFilterListView reloadData];
+                
+                
+            }else{
+                
+                ((PosFilterModel*)self.rightDataSource[0]).select = NO;     //处理第0个
+                
+                *stop = true;
+                obj.select = !obj.select;
+                
+                NSIndexPath *path = [NSIndexPath indexPathForRow:idx inSection:0];
+                [self.rightFilterListView reloadRowsAtIndexPaths:@[path] withRowAnimation:UITableViewRowAnimationNone];
+                
+                NSIndexPath *path0 = [NSIndexPath indexPathForRow:0 inSection:0];
+                [self.rightFilterListView reloadRowsAtIndexPaths:@[path0] withRowAnimation:UITableViewRowAnimationNone];
+            }
+            
+            
+            [self updateLeftListView:idx forKey:(NSString*)msg addTag:obj.select];
+        }
+    
+    }];
+    
+}
+//-----------------------------消息通知中心逻辑end--------------------------
+
+/**
+ 更新左边列表选中状态：
+ 1.判断右边选中项在左边列表的索引
+ 2.选中为第0个时，左边筛选列表不显示选中条数
+
+ @param type 更新的位置索引，主要区别0与非0位置
+ @param msg 点击右边传来的item内容
+ @param bIsAdd 是否增加的开着标志
+ */
+-(void) updateLeftListView:(NSInteger) type forKey:(NSString*) msg addTag:(BOOL) bIsAdd{
+    
+
+    [self.area_detailDict enumerateKeysAndObjectsUsingBlock:^(NSString* key, NSArray* list,BOOL * stop){
+        
+        [list enumerateObjectsUsingBlock:^(PosFilterModel* obj,NSUInteger idx,BOOL* stop2){
+            
+            if([obj.sAddress isEqualToString:msg]){
+                
+                
+                //判断对应所在键，位于左边列表中的哪一个对象
+                [self.leftDataSource enumerateObjectsUsingBlock:^(PosFilterModel* leftModel,NSUInteger leftIdx,BOOL *stop3){
+                    
+                    if([leftModel.sAddress isEqualToString:key]){
+                        
+                        if(type == 0){
+                            
+                            leftModel.selectCount = 0;
+                            
+                        }else{
+                            
+                            leftModel.selectCount = bIsAdd ? leftModel.selectCount + 1: leftModel.selectCount - 1;
+                        }
+
+                        [self.leftFilterListView reloadData];
+                        NSLog(@"532---------对应左边的对象为：%@",leftModel.sAddress);
+                    }
+                    
+                }];
+                
+                NSLog(@" 519---------------item:%@  对应的键为: %@",msg,key);
+            }
+            
+        }];
+        
+        
+    }];
     
 }
 

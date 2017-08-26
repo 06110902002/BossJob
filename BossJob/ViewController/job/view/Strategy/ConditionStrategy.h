@@ -1,20 +1,20 @@
 //
-//  CompanyStrategy.h
+//  ConditionStrategy.h
 //  BossJob
 //
-//  Created by 刘小兵 on 2017/8/21.
+//  Created by 刘小兵 on 2017/8/22.
 //  Copyright © 2017年 刘小兵. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 #import "BasePageSegment.h"
 
-@interface CompanyStrategy : BasePageSegment
+@interface ConditionStrategy : BasePageSegment
 
 
-@property (nonatomic, strong) NSMutableArray *financingBtnList;
-@property (nonatomic, strong) NSMutableArray *compSizeBtnList;
-@property (nonatomic, strong) NSMutableArray *industryBtnList;
+@property (nonatomic, strong) NSMutableArray *eduBtnList;
+@property (nonatomic, strong) NSMutableArray *expBtnList;
+@property (nonatomic, strong) NSMutableArray *salaryBtnList;
 
 
 /**
@@ -41,6 +41,5 @@
  @return 构建好的UIbutton对象列表
  */
 -(NSMutableArray*) buildCompanyFilterBtn:(NSArray*) dataList;
-
 
 @end
