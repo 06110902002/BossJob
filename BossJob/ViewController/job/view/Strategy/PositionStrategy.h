@@ -12,6 +12,7 @@
 
 @class PosRightFilterCell;
 @class PosLeftFilterCell;
+@class PosFilterModel;
 
 @interface PositionStrategy : BasePageSegment<UITableViewDataSource,UITableViewDelegate,IBaseObserver>
 
@@ -32,7 +33,8 @@
 
 @property(nonatomic,strong) PosLeftFilterCell* leftCell;
 
-@property(nonatomic,strong) NSMutableDictionary* area_detailDict; //地区/地铁  -- 详细信息字典
+@property(nonatomic,strong) NSMutableDictionary* area_detailDict;   //地区/地铁  -- 详细信息字典
+@property(nonatomic,strong) PosFilterModel* selectModel;            //选中的过滤item
 
 
 /**

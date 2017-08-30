@@ -77,7 +77,7 @@ static ConditionStrategy* conditionStrategy = nil;
     
     // 设置约束，不需要设置高度相关的约束
     [eduLayout mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(eduLabel).offset(eduLabel.frame.size.height);
+        make.top.equalTo(eduLabel).offset(35.0f);
         
         make.left.equalTo(conditionStrategy.mas_left);
         make.right.equalTo(conditionStrategy.mas_right);

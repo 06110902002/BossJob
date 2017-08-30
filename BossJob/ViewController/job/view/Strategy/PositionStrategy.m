@@ -473,9 +473,9 @@ static const int NEW_NEW_BUTTON = 5;
     //先处理右边列表选中项状态，获取到右边状态项之后再显示左边选中条数
     [self.rightDataSource enumerateObjectsUsingBlock:^(PosFilterModel* obj,NSUInteger idx,BOOL* stop){
     
-        NSLog(@"442------------UItableView收到的信息为:%@   在列表中的索引为:%ld",msg,idx);
-        
         if([msg isEqual:[obj sAddress]]){
+            
+             NSLog(@"442------------UItableView收到的信息为:%@   在列表中的索引为:%ld",msg,idx);
             
             if(idx == 0){
                 
@@ -517,6 +517,7 @@ static const int NEW_NEW_BUTTON = 5;
  更新左边列表选中状态：
  1.判断右边选中项在左边列表的索引
  2.选中为第0个时，左边筛选列表不显示选中条数
+ 3.将选中的item对象保存起来，方便发送请求到服务器去
 
  @param type 更新的位置索引，主要区别0与非0位置
  @param msg 点击右边传来的item内容
@@ -537,6 +538,8 @@ static const int NEW_NEW_BUTTON = 5;
                     
                     if([leftModel.sAddress isEqualToString:key]){
                         
+                        self.selectModel = leftModel;
+                        
                         if(type == 0){
                             
                             leftModel.selectCount = 0;
@@ -546,9 +549,12 @@ static const int NEW_NEW_BUTTON = 5;
                             leftModel.selectCount = bIsAdd ? leftModel.selectCount + 1: leftModel.selectCount - 1;
                         }
 
-                        [self.leftFilterListView reloadData];
+                        
                         NSLog(@"532---------对应左边的对象为：%@",leftModel.sAddress);
+                    }else{
+                        leftModel.selectCount = 0;
                     }
+                    [self.leftFilterListView reloadData];
                     
                 }];
                 

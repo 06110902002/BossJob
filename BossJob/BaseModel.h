@@ -21,7 +21,7 @@ typedef NS_ENUM(NSInteger, CellItemType) {
     CellItemDefaultType = 1,
     CellItemJobListType,
     CellItemSelect,         //地区过滤列表是否选中
-    
+    InterestedInMe,         //对我感兴趣类型
     
 };
 

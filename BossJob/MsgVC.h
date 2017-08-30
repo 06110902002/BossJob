@@ -9,6 +9,16 @@
 #import <UIKit/UIKit.h>
 #import "BaseViewController.h"
 
-@interface MsgVC : BaseViewController
+@interface MsgVC : BaseViewController<UITableViewDataSource,UITableViewDelegate,UIGestureRecognizerDelegate>
+
+@property(nonatomic,strong) UISegmentedControl* navSegment;
+
+@property(nonatomic,strong) UIScrollView* segmentScroll;
+
+@property(nonatomic,strong) UITableView* chatListView;
+
+@property(nonatomic,strong) UITableView* interactListView;
+
+-(void) initNavBar;
 
 @end

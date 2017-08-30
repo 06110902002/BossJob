@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		381C844B1F56463D007F01A2 /* InterestedInMeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 381C844A1F56463D007F01A2 /* InterestedInMeCell.m */; };
+		381C84501F56478C007F01A2 /* InterestedInMeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 381C844F1F56478C007F01A2 /* InterestedInMeView.m */; };
+		381C84531F564942007F01A2 /* InterestedInMeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 381C84521F564942007F01A2 /* InterestedInMeModel.m */; };
+		381C84561F564BF9007F01A2 /* ic_job_success_share.png in Resources */ = {isa = PBXBuildFile; fileRef = 381C84551F564BF9007F01A2 /* ic_job_success_share.png */; };
+		381C84591F566342007F01A2 /* HasCheckMeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 381C84581F566342007F01A2 /* HasCheckMeView.m */; };
+		381C845C1F5663FF007F01A2 /* HasCheckMeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 381C845B1F5663FF007F01A2 /* HasCheckMeCell.m */; };
+		381C845E1F568B81007F01A2 /* ic_salary.png in Resources */ = {isa = PBXBuildFile; fileRef = 381C845D1F568B81007F01A2 /* ic_salary.png */; };
+		3830DF941F559DAD008095AE /* BaseTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3830DF931F559DAD008095AE /* BaseTableView.m */; };
 		38474A1D1F4DA52600E929CD /* PosRightFilterCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 38474A1C1F4DA52600E929CD /* PosRightFilterCell.m */; };
 		38474A201F4DA64900E929CD /* PosFilterModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 38474A1F1F4DA64900E929CD /* PosFilterModel.m */; };
 		38474A231F4DA8B200E929CD /* ic_pay_checked.png in Resources */ = {isa = PBXBuildFile; fileRef = 38474A211F4DA8B200E929CD /* ic_pay_checked.png */; };
@@ -55,6 +63,7 @@
 		385F7DEF1F4C1C180044218D /* ic_location_gray.png in Resources */ = {isa = PBXBuildFile; fileRef = 385F7DEE1F4C1C180044218D /* ic_location_gray.png */; };
 		38623F781F4684B800C5FFCE /* ic_action_search.png in Resources */ = {isa = PBXBuildFile; fileRef = 38623F771F4684B800C5FFCE /* ic_action_search.png */; };
 		38623F7B1F4686D100C5FFCE /* FilterNavBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 38623F7A1F4686D100C5FFCE /* FilterNavBar.m */; };
+		387C070C1F5511940091FC80 /* ScrollNavBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 387C070B1F5511940091FC80 /* ScrollNavBar.m */; };
 		38AA36AE1F4A873B00D641DE /* BasePageSegment.m in Sources */ = {isa = PBXBuildFile; fileRef = 38AA36AD1F4A873B00D641DE /* BasePageSegment.m */; };
 		38AA36B11F4A89CF00D641DE /* PageSegmentMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 38AA36B01F4A89CF00D641DE /* PageSegmentMgr.m */; };
 		38AA36B51F4A8BC000D641DE /* RecommendStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 38AA36B41F4A8BC000D641DE /* RecommendStrategy.m */; };
@@ -96,6 +105,20 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		381C84491F56463D007F01A2 /* InterestedInMeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InterestedInMeCell.h; sourceTree = "<group>"; };
+		381C844A1F56463D007F01A2 /* InterestedInMeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InterestedInMeCell.m; sourceTree = "<group>"; };
+		381C844E1F56478C007F01A2 /* InterestedInMeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InterestedInMeView.h; sourceTree = "<group>"; };
+		381C844F1F56478C007F01A2 /* InterestedInMeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InterestedInMeView.m; sourceTree = "<group>"; };
+		381C84511F564942007F01A2 /* InterestedInMeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InterestedInMeModel.h; sourceTree = "<group>"; };
+		381C84521F564942007F01A2 /* InterestedInMeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InterestedInMeModel.m; sourceTree = "<group>"; };
+		381C84551F564BF9007F01A2 /* ic_job_success_share.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_job_success_share.png; sourceTree = "<group>"; };
+		381C84571F566342007F01A2 /* HasCheckMeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HasCheckMeView.h; path = ViewController/message/view/HasCheckMeView.h; sourceTree = "<group>"; };
+		381C84581F566342007F01A2 /* HasCheckMeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HasCheckMeView.m; path = ViewController/message/view/HasCheckMeView.m; sourceTree = "<group>"; };
+		381C845A1F5663FF007F01A2 /* HasCheckMeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HasCheckMeCell.h; sourceTree = "<group>"; };
+		381C845B1F5663FF007F01A2 /* HasCheckMeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HasCheckMeCell.m; sourceTree = "<group>"; };
+		381C845D1F568B81007F01A2 /* ic_salary.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_salary.png; sourceTree = "<group>"; };
+		3830DF921F559DAD008095AE /* BaseTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BaseTableView.h; path = ViewController/message/BaseTableView.h; sourceTree = "<group>"; };
+		3830DF931F559DAD008095AE /* BaseTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BaseTableView.m; path = ViewController/message/BaseTableView.m; sourceTree = "<group>"; };
 		38474A1B1F4DA52600E929CD /* PosRightFilterCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PosRightFilterCell.h; path = ViewController/job/view/Strategy/PosRightFilterCell.h; sourceTree = "<group>"; };
 		38474A1C1F4DA52600E929CD /* PosRightFilterCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PosRightFilterCell.m; path = ViewController/job/view/Strategy/PosRightFilterCell.m; sourceTree = "<group>"; };
 		38474A1E1F4DA64900E929CD /* PosFilterModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PosFilterModel.h; sourceTree = "<group>"; };
@@ -188,6 +211,8 @@
 		38623F771F4684B800C5FFCE /* ic_action_search.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_action_search.png; sourceTree = "<group>"; };
 		38623F791F4686D100C5FFCE /* FilterNavBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilterNavBar.h; sourceTree = "<group>"; };
 		38623F7A1F4686D100C5FFCE /* FilterNavBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilterNavBar.m; sourceTree = "<group>"; };
+		387C070A1F5511940091FC80 /* ScrollNavBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScrollNavBar.h; sourceTree = "<group>"; };
+		387C070B1F5511940091FC80 /* ScrollNavBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScrollNavBar.m; sourceTree = "<group>"; };
 		38AA36AC1F4A873B00D641DE /* BasePageSegment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BasePageSegment.h; sourceTree = "<group>"; };
 		38AA36AD1F4A873B00D641DE /* BasePageSegment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BasePageSegment.m; sourceTree = "<group>"; };
 		38AA36AF1F4A89CF00D641DE /* PageSegmentMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PageSegmentMgr.h; sourceTree = "<group>"; };
@@ -249,6 +274,39 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		381C844C1F5646CB007F01A2 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				381C84511F564942007F01A2 /* InterestedInMeModel.h */,
+				381C84521F564942007F01A2 /* InterestedInMeModel.m */,
+			);
+			name = model;
+			sourceTree = "<group>";
+		};
+		381C844D1F5646D8007F01A2 /* view */ = {
+			isa = PBXGroup;
+			children = (
+				381C84491F56463D007F01A2 /* InterestedInMeCell.h */,
+				381C844A1F56463D007F01A2 /* InterestedInMeCell.m */,
+				381C844E1F56478C007F01A2 /* InterestedInMeView.h */,
+				381C844F1F56478C007F01A2 /* InterestedInMeView.m */,
+				381C84571F566342007F01A2 /* HasCheckMeView.h */,
+				381C84581F566342007F01A2 /* HasCheckMeView.m */,
+				381C845A1F5663FF007F01A2 /* HasCheckMeCell.h */,
+				381C845B1F5663FF007F01A2 /* HasCheckMeCell.m */,
+			);
+			name = view;
+			sourceTree = "<group>";
+		};
+		381C84541F5649B6007F01A2 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				385F7DE81F4C00D60044218D /* BaseModel.h */,
+				385F7DE91F4C00D60044218D /* BaseModel.m */,
+			);
+			name = model;
+			sourceTree = "<group>";
+		};
 		3854279C1F45A26B0092F6DF = {
 			isa = PBXGroup;
 			children = (
@@ -333,6 +391,8 @@
 		385427DF1F45A9E60092F6DF /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				381C84541F5649B6007F01A2 /* model */,
+				387C070D1F55168D0091FC80 /* message */,
 				6B4DD7781F49573B00590D86 /* flowlayout */,
 				6B24D0381F47E81E0027B16E /* view */,
 				38D0C74B1F46D86A00A0046A /* job */,
@@ -340,8 +400,6 @@
 				385427E11F45AA0D0092F6DF /* BaseViewController.m */,
 				385427F01F45AFEA0092F6DF /* CompanyVC.h */,
 				385427F11F45AFEA0092F6DF /* CompanyVC.m */,
-				3854280D1F45BF570092F6DF /* MsgVC.h */,
-				3854280E1F45BF570092F6DF /* MsgVC.m */,
 				385428101F45BF720092F6DF /* MineVC.h */,
 				385428111F45BF720092F6DF /* MineVC.m */,
 			);
@@ -351,6 +409,8 @@
 		385427F31F45B2800092F6DF /* images */ = {
 			isa = PBXGroup;
 			children = (
+				381C845D1F568B81007F01A2 /* ic_salary.png */,
+				381C84551F564BF9007F01A2 /* ic_job_success_share.png */,
 				38474A211F4DA8B200E929CD /* ic_pay_checked.png */,
 				38474A221F4DA8B200E929CD /* ic_pay_unchecked.png */,
 				38D496191F4D9D7B004BB6D2 /* avatar_3.png */,
@@ -383,6 +443,8 @@
 				38623F7A1F4686D100C5FFCE /* FilterNavBar.m */,
 				6B4DD7811F4980CA00590D86 /* PaddingLabel.h */,
 				6B4DD7821F4980CA00590D86 /* PaddingLabel.m */,
+				387C070A1F5511940091FC80 /* ScrollNavBar.h */,
+				387C070B1F5511940091FC80 /* ScrollNavBar.m */,
 			);
 			name = widgt;
 			sourceTree = "<group>";
@@ -447,6 +509,19 @@
 			name = singal;
 			sourceTree = "<group>";
 		};
+		387C070D1F55168D0091FC80 /* message */ = {
+			isa = PBXGroup;
+			children = (
+				381C844D1F5646D8007F01A2 /* view */,
+				381C844C1F5646CB007F01A2 /* model */,
+				3854280D1F45BF570092F6DF /* MsgVC.h */,
+				3854280E1F45BF570092F6DF /* MsgVC.m */,
+				3830DF921F559DAD008095AE /* BaseTableView.h */,
+				3830DF931F559DAD008095AE /* BaseTableView.m */,
+			);
+			name = message;
+			sourceTree = "<group>";
+		};
 		38AA36AB1F4A867B00D641DE /* Strategy */ = {
 			isa = PBXGroup;
 			children = (
@@ -499,8 +574,6 @@
 			children = (
 				6B24D0461F4815CD0027B16E /* CityOrMetroModel.h */,
 				6B24D0471F4815CD0027B16E /* CityOrMetroModel.m */,
-				385F7DE81F4C00D60044218D /* BaseModel.h */,
-				385F7DE91F4C00D60044218D /* BaseModel.m */,
 				385F7DEB1F4C03840044218D /* JobItemModel.h */,
 				385F7DEC1F4C03840044218D /* JobItemModel.m */,
 				38474A1E1F4DA64900E929CD /* PosFilterModel.h */,
@@ -692,9 +765,11 @@
 				38D0C74A1F468F1B00A0046A /* popup_arrow_down_green.png in Resources */,
 				38D496161F4D980C004BB6D2 /* ic_degree.png in Resources */,
 				38D0C7501F46E04800A0046A /* ic_selected_done.png in Resources */,
+				381C84561F564BF9007F01A2 /* ic_job_success_share.png in Resources */,
 				385427B51F45A26B0092F6DF /* Assets.xcassets in Resources */,
 				385F7DEF1F4C1C180044218D /* ic_location_gray.png in Resources */,
 				38623F781F4684B800C5FFCE /* ic_action_search.png in Resources */,
+				381C845E1F568B81007F01A2 /* ic_salary.png in Resources */,
 				385428001F45B2F90092F6DF /* ic_main_tab_my_nor.png in Resources */,
 				38474A231F4DA8B200E929CD /* ic_pay_checked.png in Resources */,
 				385428011F45B2F90092F6DF /* ic_main_tab_my_pre.png in Resources */,
@@ -731,8 +806,10 @@
 				385427EF1F45AF260092F6DF /* JobVC.m in Sources */,
 				385427B01F45A26B0092F6DF /* ViewController.m in Sources */,
 				6B108BB11F4869D200957CD4 /* UILabel+LabelHeightAndWidth.m in Sources */,
+				381C84501F56478C007F01A2 /* InterestedInMeView.m in Sources */,
 				385427F21F45AFEA0092F6DF /* CompanyVC.m in Sources */,
 				385EF21C1F4EB933000E3C8B /* SubjectMgr.m in Sources */,
+				381C845C1F5663FF007F01A2 /* HasCheckMeCell.m in Sources */,
 				385F7DE71F4BC3F90044218D /* ConditionStrategy.m in Sources */,
 				385428121F45BF720092F6DF /* MineVC.m in Sources */,
 				3854280F1F45BF570092F6DF /* MsgVC.m in Sources */,
@@ -741,14 +818,17 @@
 				3854283D1F45CAF20092F6DF /* ViewController+MASAdditions.m in Sources */,
 				385428381F45CAF20092F6DF /* MASViewAttribute.m in Sources */,
 				385428341F45CAF20092F6DF /* MASCompositeConstraint.m in Sources */,
+				387C070C1F5511940091FC80 /* ScrollNavBar.m in Sources */,
 				385427E21F45AA0D0092F6DF /* BaseViewController.m in Sources */,
 				385427DE1F45A5A70092F6DF /* BottomTabBarVC.m in Sources */,
 				385428361F45CAF20092F6DF /* MASConstraintMaker.m in Sources */,
 				38AA36B11F4A89CF00D641DE /* PageSegmentMgr.m in Sources */,
 				385428351F45CAF20092F6DF /* MASConstraint.m in Sources */,
 				38474A201F4DA64900E929CD /* PosFilterModel.m in Sources */,
+				3830DF941F559DAD008095AE /* BaseTableView.m in Sources */,
 				385F7DEA1F4C00D60044218D /* BaseModel.m in Sources */,
 				385F7DED1F4C03840044218D /* JobItemModel.m in Sources */,
+				381C84591F566342007F01A2 /* HasCheckMeView.m in Sources */,
 				38AA36B81F4AB8AF00D641DE /* PositionStrategy.m in Sources */,
 				38474A1D1F4DA52600E929CD /* PosRightFilterCell.m in Sources */,
 				38AA36BB1F4AC87600D641DE /* CompanyStrategy.m in Sources */,
@@ -765,8 +845,10 @@
 				6B4DD7831F4980CA00590D86 /* PaddingLabel.m in Sources */,
 				38AA36B51F4A8BC000D641DE /* RecommendStrategy.m in Sources */,
 				385427AA1F45A26B0092F6DF /* main.m in Sources */,
+				381C84531F564942007F01A2 /* InterestedInMeModel.m in Sources */,
 				385428391F45CAF20092F6DF /* MASViewConstraint.m in Sources */,
 				6B22867F1F49DE8300ED022B /* JobCell.m in Sources */,
+				381C844B1F56463D007F01A2 /* InterestedInMeCell.m in Sources */,
 				6B24D03B1F47E8360027B16E /* BaseTabViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
