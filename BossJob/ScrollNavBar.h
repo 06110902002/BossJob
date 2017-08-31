@@ -40,9 +40,9 @@
 
 @property(nonatomic,assign) NSInteger nCurIndex;
 
-@property(nonatomic,assign) NSInteger nSegmentCurIndex;
-
 @property(nonatomic,strong) UIScrollView* segmentScroll;
+
+@property(nonatomic,assign) CGPoint finalPos;    //点击滑动条的标签，最终的位置
 
 
 

@@ -12,6 +12,7 @@
 #import "ScrollNavBar.h"
 #import "InterestedInMeView.h"
 #import "HasCheckMeView.h"
+#import "NewJobView.h"
 
 @interface MsgVC ()
 
@@ -80,12 +81,21 @@
     InterestedInMeView* interestedView = [[InterestedInMeView alloc] initWithFrame:CGRectMake(0.0f, 0.0, SCREEN_WIDTH, SCREEN_HEIGHT)];
     interestedView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
+    //看过我的
     HasCheckMeView* chkMeView = [[HasCheckMeView alloc] initWithFrame:CGRectMake(SCREEN_WIDTH, 0.0, SCREEN_WIDTH, SCREEN_HEIGHT)];
     chkMeView.separatorInset = UIEdgeInsetsMake(0,10,0,10);  //top left right down
     chkMeView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];  //删除底部多余行，及分割线
-    NSMutableArray* layout = [NSMutableArray arrayWithObjects:interestedView,chkMeView,nil];
+    
+    //新职位
+    NewJobView* newJobView = [[NewJobView alloc] initWithFrame:CGRectMake(SCREEN_WIDTH * 2, 0.0, SCREEN_WIDTH, SCREEN_HEIGHT)];
+    newJobView.separatorInset = UIEdgeInsetsMake(0,10,0,10);  //top left right down
+    newJobView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];  //删除底部多余行，及分割线
+    
+    NSMutableArray* layout = [NSMutableArray arrayWithObjects:interestedView,chkMeView,newJobView,nil];
     [scrollNavBarView initSegmentView:layout];
     
+    
+
 
     
     

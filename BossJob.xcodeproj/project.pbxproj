@@ -14,6 +14,8 @@
 		381C84591F566342007F01A2 /* HasCheckMeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 381C84581F566342007F01A2 /* HasCheckMeView.m */; };
 		381C845C1F5663FF007F01A2 /* HasCheckMeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 381C845B1F5663FF007F01A2 /* HasCheckMeCell.m */; };
 		381C845E1F568B81007F01A2 /* ic_salary.png in Resources */ = {isa = PBXBuildFile; fileRef = 381C845D1F568B81007F01A2 /* ic_salary.png */; };
+		381C84611F5690F7007F01A2 /* ChkMeOrNewJobModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 381C84601F5690F7007F01A2 /* ChkMeOrNewJobModel.m */; };
+		381C84641F569442007F01A2 /* NewJobView.m in Sources */ = {isa = PBXBuildFile; fileRef = 381C84631F569442007F01A2 /* NewJobView.m */; };
 		3830DF941F559DAD008095AE /* BaseTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3830DF931F559DAD008095AE /* BaseTableView.m */; };
 		38474A1D1F4DA52600E929CD /* PosRightFilterCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 38474A1C1F4DA52600E929CD /* PosRightFilterCell.m */; };
 		38474A201F4DA64900E929CD /* PosFilterModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 38474A1F1F4DA64900E929CD /* PosFilterModel.m */; };
@@ -117,6 +119,10 @@
 		381C845A1F5663FF007F01A2 /* HasCheckMeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HasCheckMeCell.h; sourceTree = "<group>"; };
 		381C845B1F5663FF007F01A2 /* HasCheckMeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HasCheckMeCell.m; sourceTree = "<group>"; };
 		381C845D1F568B81007F01A2 /* ic_salary.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_salary.png; sourceTree = "<group>"; };
+		381C845F1F5690F7007F01A2 /* ChkMeOrNewJobModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChkMeOrNewJobModel.h; sourceTree = "<group>"; };
+		381C84601F5690F7007F01A2 /* ChkMeOrNewJobModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChkMeOrNewJobModel.m; sourceTree = "<group>"; };
+		381C84621F569442007F01A2 /* NewJobView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewJobView.h; sourceTree = "<group>"; };
+		381C84631F569442007F01A2 /* NewJobView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewJobView.m; sourceTree = "<group>"; };
 		3830DF921F559DAD008095AE /* BaseTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BaseTableView.h; path = ViewController/message/BaseTableView.h; sourceTree = "<group>"; };
 		3830DF931F559DAD008095AE /* BaseTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BaseTableView.m; path = ViewController/message/BaseTableView.m; sourceTree = "<group>"; };
 		38474A1B1F4DA52600E929CD /* PosRightFilterCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PosRightFilterCell.h; path = ViewController/job/view/Strategy/PosRightFilterCell.h; sourceTree = "<group>"; };
@@ -279,6 +285,8 @@
 			children = (
 				381C84511F564942007F01A2 /* InterestedInMeModel.h */,
 				381C84521F564942007F01A2 /* InterestedInMeModel.m */,
+				381C845F1F5690F7007F01A2 /* ChkMeOrNewJobModel.h */,
+				381C84601F5690F7007F01A2 /* ChkMeOrNewJobModel.m */,
 			);
 			name = model;
 			sourceTree = "<group>";
@@ -294,6 +302,8 @@
 				381C84581F566342007F01A2 /* HasCheckMeView.m */,
 				381C845A1F5663FF007F01A2 /* HasCheckMeCell.h */,
 				381C845B1F5663FF007F01A2 /* HasCheckMeCell.m */,
+				381C84621F569442007F01A2 /* NewJobView.h */,
+				381C84631F569442007F01A2 /* NewJobView.m */,
 			);
 			name = view;
 			sourceTree = "<group>";
@@ -807,6 +817,7 @@
 				385427B01F45A26B0092F6DF /* ViewController.m in Sources */,
 				6B108BB11F4869D200957CD4 /* UILabel+LabelHeightAndWidth.m in Sources */,
 				381C84501F56478C007F01A2 /* InterestedInMeView.m in Sources */,
+				381C84641F569442007F01A2 /* NewJobView.m in Sources */,
 				385427F21F45AFEA0092F6DF /* CompanyVC.m in Sources */,
 				385EF21C1F4EB933000E3C8B /* SubjectMgr.m in Sources */,
 				381C845C1F5663FF007F01A2 /* HasCheckMeCell.m in Sources */,
@@ -845,6 +856,7 @@
 				6B4DD7831F4980CA00590D86 /* PaddingLabel.m in Sources */,
 				38AA36B51F4A8BC000D641DE /* RecommendStrategy.m in Sources */,
 				385427AA1F45A26B0092F6DF /* main.m in Sources */,
+				381C84611F5690F7007F01A2 /* ChkMeOrNewJobModel.m in Sources */,
 				381C84531F564942007F01A2 /* InterestedInMeModel.m in Sources */,
 				385428391F45CAF20092F6DF /* MASViewConstraint.m in Sources */,
 				6B22867F1F49DE8300ED022B /* JobCell.m in Sources */,

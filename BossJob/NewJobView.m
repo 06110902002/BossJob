@@ -1,18 +1,17 @@
 //
-//  HasCheckMeView.m
+//  NewJobView.m
 //  BossJob
 //
 //  Created by 刘小兵 on 2017/8/30.
 //  Copyright © 2017年 刘小兵. All rights reserved.
 //
 
-#import "HasCheckMeView.h"
+#import "NewJobView.h"
 #import "HasCheckMeCell.h"
 
 #import "ChkMeOrNewJobModel.h"
 
-@implementation HasCheckMeView
-
+@implementation NewJobView
 
 
 
@@ -29,11 +28,11 @@
     
     [super initAttr];
     
-    for(int i = 0 ; i < 9; i++){
+    for(int i = 0 ; i < 5; i++){
         
         ChkMeOrNewJobModel* model = [[ChkMeOrNewJobModel alloc] init];
-        model.sHR_JobTitle = @"数连金融 CTO";
-        model.sJobTitle_Company = @"招聘 COCOS2D";
+        model.sHR_JobTitle = @"手游客户端研发工程师";
+        model.sJobTitle_Company = @"多益";
         model.sCompanyExp = @"经验不限";
         model.sCompanyEdu = @"本科";
         model.sSalary = @"40k-90k";
@@ -57,6 +56,8 @@
     
     return 70.0f;
 }
+
+
 
 
 

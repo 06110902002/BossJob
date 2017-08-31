@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "BaseTabViewCell.h"
 
+@class ChkMeOrNewJobModel;
+
 @interface HasCheckMeCell : BaseTabViewCell
 
 
@@ -26,7 +28,7 @@
 
 @property(nonatomic,strong) UILabel* labelTime;
 
-
+@property(nonatomic,strong) ChkMeOrNewJobModel* data;
 
 
 

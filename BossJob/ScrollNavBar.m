@@ -23,7 +23,6 @@
 
 -(void) initAttr{
     
-    self.nSegmentCurIndex = 0;
     self.nCurIndex = 0;
     self.btnList = [NSMutableArray array];
 }
@@ -128,6 +127,7 @@
     
     [self updateTitleBtnStatus:button.tag];
     
+    self.finalPos = CGPointMake(button.tag * self.itemWidth + 0.5 * self.itemWidth, 40.0);
 }
 
 -(void) updateTitleBtnStatus:(NSInteger)idx{
@@ -159,12 +159,17 @@
     [self.bottomLine.layer removeAllAnimations];
     [self.bottomLine.layer addAnimation:self.moveAnimation forKey:@"onStart"];
    
+
 }
 
 -(void) animationDidStop:(CAAnimation *)anim finished:(BOOL)flag{
     
        if([self.bottomLine.layer.animationKeys.lastObject isEqualToString:@"onStart"]){
         
+           CGRect frame = self.bottomLine.frame;
+           frame.origin.x = self.finalPos.x;
+           self.bottomLine.frame = frame;
+           
     }
 }
 
@@ -177,13 +182,15 @@
     CGFloat oldOffsetX = oldOffset.x;
     CGFloat deltaOfOffsetX = offset.x - oldOffsetX;
 
-    NSValue* fromValue = [NSValue valueWithCGPoint:CGPointMake(self.nSegmentCurIndex * self.itemWidth + 0.5 * self.itemWidth,40.0)];
-    NSValue* toValue = [NSValue valueWithCGPoint:CGPointMake(self.nSegmentCurIndex * self.itemWidth + 0.5 * self.itemWidth, 40.0)];
-    [self startLineMoveAnimFromValue:fromValue toValue:toValue duration:0.5];
-    
-    self.nSegmentCurIndex = deltaOfOffsetX / SCREEN_WIDTH;
-    
-    [self updateTitleBtnStatus:self.nSegmentCurIndex];
+
+    [self.bottomLine.layer removeAllAnimations];
+    CGRect frame = self.bottomLine.frame;
+    frame.origin.x = deltaOfOffsetX / SCREEN_WIDTH * self.itemWidth;
+    self.bottomLine.frame = frame;
+    [self.bottomLine layoutIfNeeded];
+ 
+    self.nCurIndex = deltaOfOffsetX / SCREEN_WIDTH;
+    [self updateTitleBtnStatus:self.nCurIndex];
     
 }
 

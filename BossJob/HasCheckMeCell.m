@@ -8,6 +8,7 @@
 
 #import "HasCheckMeCell.h"
 #import "Masonry.h"
+#import "ChkMeOrNewJobModel.h"
 
 @implementation HasCheckMeCell
 
@@ -144,12 +145,15 @@
 //ovride super class method
 -(void) bindData:(BaseModel*_Nonnull) data{
     
-    
-    //    if(self.data != (InterestedInMeModel*)data){
-    //
-    //        self.data = (InterestedInMeModel*)data;
-    //
-    //    }
+    if(self.data != (ChkMeOrNewJobModel*)data){
+        
+        self.data = (ChkMeOrNewJobModel*)data;
+        self.label_HR_JobTitle.text = self.data.sHR_JobTitle;
+        self.label_JobTitle_Company.text = self.data.sJobTitle_Company;
+        self.labelCompanyExp.text = self.data.sCompanyExp;
+        self.labelCompanyEdu.text = self.data.sCompanyEdu;
+        self.labelSalary.text = self.data.sSalary;
+    }
     
     
     
