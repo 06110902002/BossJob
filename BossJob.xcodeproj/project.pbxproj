@@ -16,6 +16,11 @@
 		381C845E1F568B81007F01A2 /* ic_salary.png in Resources */ = {isa = PBXBuildFile; fileRef = 381C845D1F568B81007F01A2 /* ic_salary.png */; };
 		381C84611F5690F7007F01A2 /* ChkMeOrNewJobModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 381C84601F5690F7007F01A2 /* ChkMeOrNewJobModel.m */; };
 		381C84641F569442007F01A2 /* NewJobView.m in Sources */ = {isa = PBXBuildFile; fileRef = 381C84631F569442007F01A2 /* NewJobView.m */; };
+		382CC4D31F57A47100BFEFAE /* ChatView.m in Sources */ = {isa = PBXBuildFile; fileRef = 382CC4D21F57A47100BFEFAE /* ChatView.m */; };
+		382CC4D61F57A6F600BFEFAE /* ChatCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 382CC4D51F57A6F600BFEFAE /* ChatCell.m */; };
+		382CC4D91F57B3F600BFEFAE /* ChatModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 382CC4D81F57B3F600BFEFAE /* ChatModel.m */; };
+		382CC4DC1F57B4E500BFEFAE /* ChatHeadModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 382CC4DB1F57B4E500BFEFAE /* ChatHeadModel.m */; };
+		382CC4DF1F57B58700BFEFAE /* ChatHeadCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 382CC4DE1F57B58700BFEFAE /* ChatHeadCell.m */; };
 		3830DF941F559DAD008095AE /* BaseTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3830DF931F559DAD008095AE /* BaseTableView.m */; };
 		38474A1D1F4DA52600E929CD /* PosRightFilterCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 38474A1C1F4DA52600E929CD /* PosRightFilterCell.m */; };
 		38474A201F4DA64900E929CD /* PosFilterModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 38474A1F1F4DA64900E929CD /* PosFilterModel.m */; };
@@ -66,6 +71,7 @@
 		38623F781F4684B800C5FFCE /* ic_action_search.png in Resources */ = {isa = PBXBuildFile; fileRef = 38623F771F4684B800C5FFCE /* ic_action_search.png */; };
 		38623F7B1F4686D100C5FFCE /* FilterNavBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 38623F7A1F4686D100C5FFCE /* FilterNavBar.m */; };
 		387C070C1F5511940091FC80 /* ScrollNavBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 387C070B1F5511940091FC80 /* ScrollNavBar.m */; };
+		389F06911F590CBE009541E0 /* CompanyFilterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 389F06901F590CBE009541E0 /* CompanyFilterView.m */; };
 		38AA36AE1F4A873B00D641DE /* BasePageSegment.m in Sources */ = {isa = PBXBuildFile; fileRef = 38AA36AD1F4A873B00D641DE /* BasePageSegment.m */; };
 		38AA36B11F4A89CF00D641DE /* PageSegmentMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 38AA36B01F4A89CF00D641DE /* PageSegmentMgr.m */; };
 		38AA36B51F4A8BC000D641DE /* RecommendStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 38AA36B41F4A8BC000D641DE /* RecommendStrategy.m */; };
@@ -123,6 +129,16 @@
 		381C84601F5690F7007F01A2 /* ChkMeOrNewJobModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChkMeOrNewJobModel.m; sourceTree = "<group>"; };
 		381C84621F569442007F01A2 /* NewJobView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewJobView.h; sourceTree = "<group>"; };
 		381C84631F569442007F01A2 /* NewJobView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewJobView.m; sourceTree = "<group>"; };
+		382CC4D11F57A47100BFEFAE /* ChatView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatView.h; sourceTree = "<group>"; };
+		382CC4D21F57A47100BFEFAE /* ChatView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatView.m; sourceTree = "<group>"; };
+		382CC4D41F57A6F600BFEFAE /* ChatCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatCell.h; sourceTree = "<group>"; };
+		382CC4D51F57A6F600BFEFAE /* ChatCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatCell.m; sourceTree = "<group>"; };
+		382CC4D71F57B3F600BFEFAE /* ChatModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatModel.h; sourceTree = "<group>"; };
+		382CC4D81F57B3F600BFEFAE /* ChatModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatModel.m; sourceTree = "<group>"; };
+		382CC4DA1F57B4E500BFEFAE /* ChatHeadModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatHeadModel.h; sourceTree = "<group>"; };
+		382CC4DB1F57B4E500BFEFAE /* ChatHeadModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatHeadModel.m; sourceTree = "<group>"; };
+		382CC4DD1F57B58700BFEFAE /* ChatHeadCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatHeadCell.h; sourceTree = "<group>"; };
+		382CC4DE1F57B58700BFEFAE /* ChatHeadCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatHeadCell.m; sourceTree = "<group>"; };
 		3830DF921F559DAD008095AE /* BaseTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BaseTableView.h; path = ViewController/message/BaseTableView.h; sourceTree = "<group>"; };
 		3830DF931F559DAD008095AE /* BaseTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BaseTableView.m; path = ViewController/message/BaseTableView.m; sourceTree = "<group>"; };
 		38474A1B1F4DA52600E929CD /* PosRightFilterCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PosRightFilterCell.h; path = ViewController/job/view/Strategy/PosRightFilterCell.h; sourceTree = "<group>"; };
@@ -219,6 +235,8 @@
 		38623F7A1F4686D100C5FFCE /* FilterNavBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilterNavBar.m; sourceTree = "<group>"; };
 		387C070A1F5511940091FC80 /* ScrollNavBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScrollNavBar.h; sourceTree = "<group>"; };
 		387C070B1F5511940091FC80 /* ScrollNavBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScrollNavBar.m; sourceTree = "<group>"; };
+		389F068F1F590CBE009541E0 /* CompanyFilterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CompanyFilterView.h; path = ViewController/company/page_strategy/CompanyFilterView.h; sourceTree = "<group>"; };
+		389F06901F590CBE009541E0 /* CompanyFilterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CompanyFilterView.m; path = ViewController/company/page_strategy/CompanyFilterView.m; sourceTree = "<group>"; };
 		38AA36AC1F4A873B00D641DE /* BasePageSegment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BasePageSegment.h; sourceTree = "<group>"; };
 		38AA36AD1F4A873B00D641DE /* BasePageSegment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BasePageSegment.m; sourceTree = "<group>"; };
 		38AA36AF1F4A89CF00D641DE /* PageSegmentMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PageSegmentMgr.h; sourceTree = "<group>"; };
@@ -287,11 +305,15 @@
 				381C84521F564942007F01A2 /* InterestedInMeModel.m */,
 				381C845F1F5690F7007F01A2 /* ChkMeOrNewJobModel.h */,
 				381C84601F5690F7007F01A2 /* ChkMeOrNewJobModel.m */,
+				382CC4D71F57B3F600BFEFAE /* ChatModel.h */,
+				382CC4D81F57B3F600BFEFAE /* ChatModel.m */,
+				382CC4DA1F57B4E500BFEFAE /* ChatHeadModel.h */,
+				382CC4DB1F57B4E500BFEFAE /* ChatHeadModel.m */,
 			);
 			name = model;
 			sourceTree = "<group>";
 		};
-		381C844D1F5646D8007F01A2 /* view */ = {
+		381C844D1F5646D8007F01A2 /* interact */ = {
 			isa = PBXGroup;
 			children = (
 				381C84491F56463D007F01A2 /* InterestedInMeCell.h */,
@@ -305,7 +327,7 @@
 				381C84621F569442007F01A2 /* NewJobView.h */,
 				381C84631F569442007F01A2 /* NewJobView.m */,
 			);
-			name = view;
+			name = interact;
 			sourceTree = "<group>";
 		};
 		381C84541F5649B6007F01A2 /* model */ = {
@@ -401,6 +423,7 @@
 		385427DF1F45A9E60092F6DF /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				389F068A1F58E21C009541E0 /* company */,
 				381C84541F5649B6007F01A2 /* model */,
 				387C070D1F55168D0091FC80 /* message */,
 				6B4DD7781F49573B00590D86 /* flowlayout */,
@@ -408,8 +431,6 @@
 				38D0C74B1F46D86A00A0046A /* job */,
 				385427E01F45AA0D0092F6DF /* BaseViewController.h */,
 				385427E11F45AA0D0092F6DF /* BaseViewController.m */,
-				385427F01F45AFEA0092F6DF /* CompanyVC.h */,
-				385427F11F45AFEA0092F6DF /* CompanyVC.m */,
 				385428101F45BF720092F6DF /* MineVC.h */,
 				385428111F45BF720092F6DF /* MineVC.m */,
 			);
@@ -522,14 +543,45 @@
 		387C070D1F55168D0091FC80 /* message */ = {
 			isa = PBXGroup;
 			children = (
-				381C844D1F5646D8007F01A2 /* view */,
+				389F06881F58DFC5009541E0 /* chat */,
+				381C844D1F5646D8007F01A2 /* interact */,
 				381C844C1F5646CB007F01A2 /* model */,
 				3854280D1F45BF570092F6DF /* MsgVC.h */,
 				3854280E1F45BF570092F6DF /* MsgVC.m */,
-				3830DF921F559DAD008095AE /* BaseTableView.h */,
-				3830DF931F559DAD008095AE /* BaseTableView.m */,
 			);
 			name = message;
+			sourceTree = "<group>";
+		};
+		389F06881F58DFC5009541E0 /* chat */ = {
+			isa = PBXGroup;
+			children = (
+				382CC4D11F57A47100BFEFAE /* ChatView.h */,
+				382CC4D21F57A47100BFEFAE /* ChatView.m */,
+				382CC4D41F57A6F600BFEFAE /* ChatCell.h */,
+				382CC4D51F57A6F600BFEFAE /* ChatCell.m */,
+				382CC4DD1F57B58700BFEFAE /* ChatHeadCell.h */,
+				382CC4DE1F57B58700BFEFAE /* ChatHeadCell.m */,
+			);
+			name = chat;
+			sourceTree = "<group>";
+		};
+		389F068A1F58E21C009541E0 /* company */ = {
+			isa = PBXGroup;
+			children = (
+				389F068B1F58E72E009541E0 /* page_strategy */,
+				385427F01F45AFEA0092F6DF /* CompanyVC.h */,
+				385427F11F45AFEA0092F6DF /* CompanyVC.m */,
+			);
+			name = company;
+			sourceTree = "<group>";
+		};
+		389F068B1F58E72E009541E0 /* page_strategy */ = {
+			isa = PBXGroup;
+			children = (
+				389F068F1F590CBE009541E0 /* CompanyFilterView.h */,
+				389F06901F590CBE009541E0 /* CompanyFilterView.m */,
+			);
+			name = page_strategy;
 			sourceTree = "<group>";
 		};
 		38AA36AB1F4A867B00D641DE /* Strategy */ = {
@@ -618,6 +670,8 @@
 		6B24D0381F47E81E0027B16E /* view */ = {
 			isa = PBXGroup;
 			children = (
+				3830DF921F559DAD008095AE /* BaseTableView.h */,
+				3830DF931F559DAD008095AE /* BaseTableView.m */,
 				6B24D0391F47E8360027B16E /* BaseTabViewCell.h */,
 				6B24D03A1F47E8360027B16E /* BaseTabViewCell.m */,
 			);
@@ -821,6 +875,8 @@
 				385427F21F45AFEA0092F6DF /* CompanyVC.m in Sources */,
 				385EF21C1F4EB933000E3C8B /* SubjectMgr.m in Sources */,
 				381C845C1F5663FF007F01A2 /* HasCheckMeCell.m in Sources */,
+				382CC4DC1F57B4E500BFEFAE /* ChatHeadModel.m in Sources */,
+				382CC4DF1F57B58700BFEFAE /* ChatHeadCell.m in Sources */,
 				385F7DE71F4BC3F90044218D /* ConditionStrategy.m in Sources */,
 				385428121F45BF720092F6DF /* MineVC.m in Sources */,
 				3854280F1F45BF570092F6DF /* MsgVC.m in Sources */,
@@ -829,6 +885,7 @@
 				3854283D1F45CAF20092F6DF /* ViewController+MASAdditions.m in Sources */,
 				385428381F45CAF20092F6DF /* MASViewAttribute.m in Sources */,
 				385428341F45CAF20092F6DF /* MASCompositeConstraint.m in Sources */,
+				382CC4D91F57B3F600BFEFAE /* ChatModel.m in Sources */,
 				387C070C1F5511940091FC80 /* ScrollNavBar.m in Sources */,
 				385427E21F45AA0D0092F6DF /* BaseViewController.m in Sources */,
 				385427DE1F45A5A70092F6DF /* BottomTabBarVC.m in Sources */,
@@ -837,6 +894,7 @@
 				385428351F45CAF20092F6DF /* MASConstraint.m in Sources */,
 				38474A201F4DA64900E929CD /* PosFilterModel.m in Sources */,
 				3830DF941F559DAD008095AE /* BaseTableView.m in Sources */,
+				382CC4D61F57A6F600BFEFAE /* ChatCell.m in Sources */,
 				385F7DEA1F4C00D60044218D /* BaseModel.m in Sources */,
 				385F7DED1F4C03840044218D /* JobItemModel.m in Sources */,
 				381C84591F566342007F01A2 /* HasCheckMeView.m in Sources */,
@@ -853,10 +911,12 @@
 				385427AD1F45A26B0092F6DF /* AppDelegate.m in Sources */,
 				38AA36AE1F4A873B00D641DE /* BasePageSegment.m in Sources */,
 				385428051F45BB680092F6DF /* UIImage+UIImageExtras.m in Sources */,
+				389F06911F590CBE009541E0 /* CompanyFilterView.m in Sources */,
 				6B4DD7831F4980CA00590D86 /* PaddingLabel.m in Sources */,
 				38AA36B51F4A8BC000D641DE /* RecommendStrategy.m in Sources */,
 				385427AA1F45A26B0092F6DF /* main.m in Sources */,
 				381C84611F5690F7007F01A2 /* ChkMeOrNewJobModel.m in Sources */,
+				382CC4D31F57A47100BFEFAE /* ChatView.m in Sources */,
 				381C84531F564942007F01A2 /* InterestedInMeModel.m in Sources */,
 				385428391F45CAF20092F6DF /* MASViewConstraint.m in Sources */,
 				6B22867F1F49DE8300ED022B /* JobCell.m in Sources */,

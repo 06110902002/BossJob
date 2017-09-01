@@ -22,6 +22,8 @@ typedef NS_ENUM(NSInteger, CellItemType) {
     CellItemJobListType,
     CellItemSelect,         //地区过滤列表是否选中
     InterestedInMe,         //对我感兴趣类型
+    ChatType,               //聊天页面信息实体类型
+    ChatHeadType,           //聊天页面头部说明信息实体类型
     
 };
 

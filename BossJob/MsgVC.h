@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "BaseViewController.h"
 
-@interface MsgVC : BaseViewController<UITableViewDataSource,UITableViewDelegate,UIGestureRecognizerDelegate>
+@interface MsgVC : BaseViewController<UIGestureRecognizerDelegate>
 
 @property(nonatomic,strong) UISegmentedControl* navSegment;
 
@@ -17,7 +17,6 @@
 
 @property(nonatomic,strong) UITableView* chatListView;
 
-@property(nonatomic,strong) UITableView* interactListView;
 
 -(void) initNavBar;
 

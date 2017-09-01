@@ -73,7 +73,7 @@
     BaseModel* data = ((BaseModel* )self.dataList[indexPath.row]);
     
     [cell bindData:data];
-    
+
     return cell;
     
 }

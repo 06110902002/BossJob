@@ -272,7 +272,7 @@ static const int CONDITION_PANEL = 28;
     
         case 0:{
             
-            if(point.y >= 95){
+            if(point.y >= 220){
                 [self closeFilterMaskLayer];
             }
             
@@ -376,13 +376,14 @@ static const int CONDITION_PANEL = 28;
         [self.jobDataSource addObject:jobData];
     }
     
-    self.jobListView = [[UITableView alloc] initWithFrame:CGRectMake(0, 105,  SCREEN_WIDTH, SCREEN_HEIGHT)];
+    self.jobListView = [[UITableView alloc] initWithFrame:CGRectMake(0, 105,  SCREEN_WIDTH, SCREEN_HEIGHT - 150.0)];
     self.jobListView.backgroundColor = [UIColor colorWithRed:235.0 / 255.0 green:238.0/255.0 blue:237.0/255.0 alpha:1.0];
     self.jobListView.tag = JOB_TABLEVIEW;
     self.jobListView.delegate = self;
     self.jobListView.dataSource = self;
     [self.jobListView layoutIfNeeded];
     [self.view addSubview:self.jobListView];
+    
 }
 
 

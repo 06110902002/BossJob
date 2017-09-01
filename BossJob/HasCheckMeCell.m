@@ -149,7 +149,14 @@
         
         self.data = (ChkMeOrNewJobModel*)data;
         self.label_HR_JobTitle.text = self.data.sHR_JobTitle;
-        self.label_JobTitle_Company.text = self.data.sJobTitle_Company;
+        
+        NSMutableAttributedString *AttributedStr = [[NSMutableAttributedString alloc]initWithString:self.data.sJobTitle_Company];
+        [AttributedStr addAttribute:NSForegroundColorAttributeName
+                              value:[UIColor colorWithRed:118.0f / 255.0 green:198.f / 255.0 blue:192.0f / 255.0 alpha:1.0]
+                              range:NSMakeRange(2, [AttributedStr length] - 2)];
+        self.label_JobTitle_Company.attributedText = AttributedStr;
+        
+        
         self.labelCompanyExp.text = self.data.sCompanyExp;
         self.labelCompanyEdu.text = self.data.sCompanyEdu;
         self.labelSalary.text = self.data.sSalary;

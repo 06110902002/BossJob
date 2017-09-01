@@ -13,6 +13,7 @@
 #import "InterestedInMeView.h"
 #import "HasCheckMeView.h"
 #import "NewJobView.h"
+#import "ChatView.h"
 
 @interface MsgVC ()
 
@@ -66,6 +67,11 @@
     UIView* chatBgView = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, SCREEN_WIDTH, SCREEN_HEIGHT)];
     [self.segmentScroll addSubview:chatBgView];
     chatBgView.backgroundColor = [UIColor whiteColor];
+    ChatView* chatView = [[ChatView alloc] initWithFrame:CGRectMake(0.0f, 0.0, SCREEN_WIDTH, SCREEN_HEIGHT)];
+    chatView.separatorInset = UIEdgeInsetsMake(0,10,0,10);  //top left right down
+    chatView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];  //删除底部多余行，及分割线
+    [chatBgView addSubview:chatView];
+    
     
     //创建互动视图
     UIView* interactBgView = [[UIView alloc] initWithFrame:CGRectMake(SCREEN_WIDTH, 0.0, SCREEN_WIDTH, SCREEN_HEIGHT)];
@@ -93,11 +99,6 @@
     
     NSMutableArray* layout = [NSMutableArray arrayWithObjects:interestedView,chkMeView,newJobView,nil];
     [scrollNavBarView initSegmentView:layout];
-    
-    
-
-
-    
     
     [interactBgView addSubview:scrollNavBarView];
 
