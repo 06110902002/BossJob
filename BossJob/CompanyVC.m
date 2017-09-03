@@ -13,6 +13,8 @@
 #import "CompanyFilterView.h"
 #import "JobCell.h"
 #import "JobItemModel.h"
+#import "ComAbstractTableVC.h"
+#import "ScrollSegmentVC.h"
 
 
 
@@ -288,6 +290,25 @@ static const int FILTER_PANEL = 22;
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    
+    ComAbstractTableVC *table = [[ComAbstractTableVC alloc] init];
+    //    CollectionViewController *collectionView = [[CollectionViewController alloc] initWithNibName:@"CollectionViewController" bundle:nil];
+    
+   // ComAbstractTableVC *table1 = [[ComAbstractTableVC alloc] initWithNibName:@"TableViewController" bundle:nil];
+    
+    ScrollSegmentVC *pager = [[ScrollSegmentVC alloc] init];
+    [pager setViewControllers:@[table,table]];
+    pager.segmentMiniTopInset = 64;
+    pager.headerHeight = 200;
+    pager.freezenHeaderWhenReachMaxHeaderHeight = YES;
+   
+    
+    //观察标题的变化
+    //[self.pager addObserver:self forKeyPath:@"segmentTopInset" options:NSKeyValueObservingOptionNew context:NULL];
+    
+    
+    [self presentModalViewController:pager  animated: YES ];
     
 }
 

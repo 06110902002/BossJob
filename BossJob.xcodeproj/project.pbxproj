@@ -68,6 +68,12 @@
 		385F7DEA1F4C00D60044218D /* BaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 385F7DE91F4C00D60044218D /* BaseModel.m */; };
 		385F7DED1F4C03840044218D /* JobItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 385F7DEC1F4C03840044218D /* JobItemModel.m */; };
 		385F7DEF1F4C1C180044218D /* ic_location_gray.png in Resources */ = {isa = PBXBuildFile; fileRef = 385F7DEE1F4C1C180044218D /* ic_location_gray.png */; };
+		386220DB1F5BF51900074C58 /* ComDetailInfoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 386220DA1F5BF51900074C58 /* ComDetailInfoVC.m */; };
+		386220E01F5BF63A00074C58 /* ScrollSegmentVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 386220DF1F5BF63A00074C58 /* ScrollSegmentVC.m */; };
+		386220EB1F5BFB2B00074C58 /* SegmentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 386220EA1F5BFB2B00074C58 /* SegmentView.m */; };
+		386220EE1F5BFBDC00074C58 /* SegmentHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 386220ED1F5BFBDC00074C58 /* SegmentHeadView.m */; };
+		386220F01F5BFC4F00074C58 /* listdownload.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 386220EF1F5BFC4F00074C58 /* listdownload.jpg */; };
+		386220F31F5BFF9300074C58 /* ComAbstractTableVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 386220F21F5BFF9300074C58 /* ComAbstractTableVC.m */; };
 		38623F781F4684B800C5FFCE /* ic_action_search.png in Resources */ = {isa = PBXBuildFile; fileRef = 38623F771F4684B800C5FFCE /* ic_action_search.png */; };
 		38623F7B1F4686D100C5FFCE /* FilterNavBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 38623F7A1F4686D100C5FFCE /* FilterNavBar.m */; };
 		387C070C1F5511940091FC80 /* ScrollNavBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 387C070B1F5511940091FC80 /* ScrollNavBar.m */; };
@@ -230,6 +236,19 @@
 		385F7DEB1F4C03840044218D /* JobItemModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobItemModel.h; sourceTree = "<group>"; };
 		385F7DEC1F4C03840044218D /* JobItemModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JobItemModel.m; sourceTree = "<group>"; };
 		385F7DEE1F4C1C180044218D /* ic_location_gray.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_location_gray.png; sourceTree = "<group>"; };
+		386220D91F5BF51900074C58 /* ComDetailInfoVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComDetailInfoVC.h; sourceTree = "<group>"; };
+		386220DA1F5BF51900074C58 /* ComDetailInfoVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComDetailInfoVC.m; sourceTree = "<group>"; };
+		386220DE1F5BF63A00074C58 /* ScrollSegmentVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScrollSegmentVC.h; sourceTree = "<group>"; };
+		386220DF1F5BF63A00074C58 /* ScrollSegmentVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScrollSegmentVC.m; sourceTree = "<group>"; };
+		386220E21F5BF6CF00074C58 /* SegmentControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SegmentControllerDelegate.h; path = widgt/segment_scrollbar/delegate/SegmentControllerDelegate.h; sourceTree = "<group>"; };
+		386220E51F5BF7D300074C58 /* SegmentBarHeaderProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SegmentBarHeaderProtocol.h; path = widgt/segment_scrollbar/delegate/SegmentBarHeaderProtocol.h; sourceTree = "<group>"; };
+		386220E91F5BFB2B00074C58 /* SegmentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SegmentView.h; path = widgt/segment_scrollbar/view/SegmentView.h; sourceTree = "<group>"; };
+		386220EA1F5BFB2B00074C58 /* SegmentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SegmentView.m; path = widgt/segment_scrollbar/view/SegmentView.m; sourceTree = "<group>"; };
+		386220EC1F5BFBDC00074C58 /* SegmentHeadView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SegmentHeadView.h; path = widgt/segment_scrollbar/view/SegmentHeadView.h; sourceTree = "<group>"; };
+		386220ED1F5BFBDC00074C58 /* SegmentHeadView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SegmentHeadView.m; path = widgt/segment_scrollbar/view/SegmentHeadView.m; sourceTree = "<group>"; };
+		386220EF1F5BFC4F00074C58 /* listdownload.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = listdownload.jpg; sourceTree = "<group>"; };
+		386220F11F5BFF9300074C58 /* ComAbstractTableVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ComAbstractTableVC.h; path = ViewController/company/ComAbstractTableVC.h; sourceTree = "<group>"; };
+		386220F21F5BFF9300074C58 /* ComAbstractTableVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ComAbstractTableVC.m; path = ViewController/company/ComAbstractTableVC.m; sourceTree = "<group>"; };
 		38623F771F4684B800C5FFCE /* ic_action_search.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_action_search.png; sourceTree = "<group>"; };
 		38623F791F4686D100C5FFCE /* FilterNavBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilterNavBar.h; sourceTree = "<group>"; };
 		38623F7A1F4686D100C5FFCE /* FilterNavBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilterNavBar.m; sourceTree = "<group>"; };
@@ -440,6 +459,7 @@
 		385427F31F45B2800092F6DF /* images */ = {
 			isa = PBXGroup;
 			children = (
+				386220EF1F5BFC4F00074C58 /* listdownload.jpg */,
 				381C845D1F568B81007F01A2 /* ic_salary.png */,
 				381C84551F564BF9007F01A2 /* ic_job_success_share.png */,
 				38474A211F4DA8B200E929CD /* ic_pay_checked.png */,
@@ -468,6 +488,7 @@
 		385428021F45BB560092F6DF /* widgt */ = {
 			isa = PBXGroup;
 			children = (
+				386220DD1F5BF59A00074C58 /* segment_scrollbar */,
 				385428031F45BB680092F6DF /* UIImage+UIImageExtras.h */,
 				385428041F45BB680092F6DF /* UIImage+UIImageExtras.m */,
 				38623F791F4686D100C5FFCE /* FilterNavBar.h */,
@@ -540,6 +561,37 @@
 			name = singal;
 			sourceTree = "<group>";
 		};
+		386220DD1F5BF59A00074C58 /* segment_scrollbar */ = {
+			isa = PBXGroup;
+			children = (
+				386220E81F5BFAE300074C58 /* view */,
+				386220E11F5BF68500074C58 /* delegate */,
+				386220DE1F5BF63A00074C58 /* ScrollSegmentVC.h */,
+				386220DF1F5BF63A00074C58 /* ScrollSegmentVC.m */,
+			);
+			name = segment_scrollbar;
+			sourceTree = "<group>";
+		};
+		386220E11F5BF68500074C58 /* delegate */ = {
+			isa = PBXGroup;
+			children = (
+				386220E21F5BF6CF00074C58 /* SegmentControllerDelegate.h */,
+				386220E51F5BF7D300074C58 /* SegmentBarHeaderProtocol.h */,
+			);
+			name = delegate;
+			sourceTree = "<group>";
+		};
+		386220E81F5BFAE300074C58 /* view */ = {
+			isa = PBXGroup;
+			children = (
+				386220E91F5BFB2B00074C58 /* SegmentView.h */,
+				386220EA1F5BFB2B00074C58 /* SegmentView.m */,
+				386220EC1F5BFBDC00074C58 /* SegmentHeadView.h */,
+				386220ED1F5BFBDC00074C58 /* SegmentHeadView.m */,
+			);
+			name = view;
+			sourceTree = "<group>";
+		};
 		387C070D1F55168D0091FC80 /* message */ = {
 			isa = PBXGroup;
 			children = (
@@ -571,6 +623,10 @@
 				389F068B1F58E72E009541E0 /* page_strategy */,
 				385427F01F45AFEA0092F6DF /* CompanyVC.h */,
 				385427F11F45AFEA0092F6DF /* CompanyVC.m */,
+				386220D91F5BF51900074C58 /* ComDetailInfoVC.h */,
+				386220DA1F5BF51900074C58 /* ComDetailInfoVC.m */,
+				386220F11F5BFF9300074C58 /* ComAbstractTableVC.h */,
+				386220F21F5BFF9300074C58 /* ComAbstractTableVC.m */,
 			);
 			name = company;
 			sourceTree = "<group>";
@@ -820,6 +876,7 @@
 				385427FD1F45B2E90092F6DF /* ic_main_tab_find_pre.png in Resources */,
 				38D0C7491F468F1B00A0046A /* popup_arrow_down_gray.png in Resources */,
 				385428151F45C1E40092F6DF /* ic_main_tab_contacts_nor.png in Resources */,
+				386220F01F5BFC4F00074C58 /* listdownload.jpg in Resources */,
 				385427B81F45A26B0092F6DF /* LaunchScreen.storyboard in Resources */,
 				385428161F45C1E40092F6DF /* ic_main_tab_contacts_pre.png in Resources */,
 				38D4961A1F4D9D7B004BB6D2 /* avatar_3.png in Resources */,
@@ -867,11 +924,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				3854283C1F45CAF20092F6DF /* View+MASAdditions.m in Sources */,
+				386220E01F5BF63A00074C58 /* ScrollSegmentVC.m in Sources */,
 				385427EF1F45AF260092F6DF /* JobVC.m in Sources */,
 				385427B01F45A26B0092F6DF /* ViewController.m in Sources */,
 				6B108BB11F4869D200957CD4 /* UILabel+LabelHeightAndWidth.m in Sources */,
 				381C84501F56478C007F01A2 /* InterestedInMeView.m in Sources */,
 				381C84641F569442007F01A2 /* NewJobView.m in Sources */,
+				386220F31F5BFF9300074C58 /* ComAbstractTableVC.m in Sources */,
 				385427F21F45AFEA0092F6DF /* CompanyVC.m in Sources */,
 				385EF21C1F4EB933000E3C8B /* SubjectMgr.m in Sources */,
 				381C845C1F5663FF007F01A2 /* HasCheckMeCell.m in Sources */,
@@ -893,6 +952,7 @@
 				38AA36B11F4A89CF00D641DE /* PageSegmentMgr.m in Sources */,
 				385428351F45CAF20092F6DF /* MASConstraint.m in Sources */,
 				38474A201F4DA64900E929CD /* PosFilterModel.m in Sources */,
+				386220EB1F5BFB2B00074C58 /* SegmentView.m in Sources */,
 				3830DF941F559DAD008095AE /* BaseTableView.m in Sources */,
 				382CC4D61F57A6F600BFEFAE /* ChatCell.m in Sources */,
 				385F7DEA1F4C00D60044218D /* BaseModel.m in Sources */,
@@ -908,6 +968,7 @@
 				385EF2191F4EB82F000E3C8B /* BaseObserver.m in Sources */,
 				6B4DD77D1F49587300590D86 /* FlowLayout.m in Sources */,
 				38623F7B1F4686D100C5FFCE /* FilterNavBar.m in Sources */,
+				386220EE1F5BFBDC00074C58 /* SegmentHeadView.m in Sources */,
 				385427AD1F45A26B0092F6DF /* AppDelegate.m in Sources */,
 				38AA36AE1F4A873B00D641DE /* BasePageSegment.m in Sources */,
 				385428051F45BB680092F6DF /* UIImage+UIImageExtras.m in Sources */,
@@ -916,6 +977,7 @@
 				38AA36B51F4A8BC000D641DE /* RecommendStrategy.m in Sources */,
 				385427AA1F45A26B0092F6DF /* main.m in Sources */,
 				381C84611F5690F7007F01A2 /* ChkMeOrNewJobModel.m in Sources */,
+				386220DB1F5BF51900074C58 /* ComDetailInfoVC.m in Sources */,
 				382CC4D31F57A47100BFEFAE /* ChatView.m in Sources */,
 				381C84531F564942007F01A2 /* InterestedInMeModel.m in Sources */,
 				385428391F45CAF20092F6DF /* MASViewConstraint.m in Sources */,
