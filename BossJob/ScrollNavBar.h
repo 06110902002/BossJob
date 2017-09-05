@@ -69,4 +69,10 @@
  */
 -(void)updateTitleBtnStatus:(NSInteger) idx;
 
+
+/**
+ 注册广播通知
+ */
+-(void)registerBrodcast;
+
 @end

@@ -9,11 +9,17 @@
 #import "ScrollSegmentVC.h"
 #import "SegmentView.h"
 #import "SegmentHeadView.h"
+#import "ScrollNavBar.h"
+#import "ComAbstractView.h"
+
+
+#import "HasCheckMeView.h"
+
 
 const void *_ARSEGMENTPAGE_CURRNTPAGE_SCROLLVIEWOFFSET = &_ARSEGMENTPAGE_CURRNTPAGE_SCROLLVIEWOFFSET;
 const void *_ARSEGMENTPAGE_CURRNTPAGE_SCROLLVIEWINSET = &_ARSEGMENTPAGE_CURRNTPAGE_SCROLLVIEWINSET;
 
-@interface ScrollSegmentVC ()
+@interface ScrollSegmentVC ()<ScrollNavBarChangeListener,UIScrollViewDelegate>
 
 @property(nonatomic, strong)
 UIView<SegmentBarHeaderProtocol> *headerView;
@@ -30,6 +36,17 @@ UIViewController<SegmentControllerDelegate> *currentDisplayController;
 @property(nonatomic, assign) BOOL ignoreOffsetChanged;              //是否忽略offset的改变
 
 @property(nonatomic, assign) CGFloat originalTopInset;              //中间滚动视图距离屏幕顶端的间距
+
+//测试使用UIIVew的相关对象
+@property(nonatomic,strong) ScrollNavBar* segNavBarView;
+
+@property(nonatomic,strong) ComAbstractView* comAbstractView;
+@property(nonatomic,strong) HasCheckMeView* chkMeView2;
+
+
+
+@property(nonatomic,strong) UIScrollView* segmentScroll;
+@property(nonatomic,strong) UITableView* mCurDisplayView;
 
 @end
 
@@ -128,39 +145,6 @@ UIViewController<SegmentControllerDelegate> *currentDisplayController;
     self.headerView = [self customHeaderView];
     self.headerView.clipsToBounds = YES;
     [self.view addSubview:self.headerView];
-    
-    
-    //添加中间菜单栏
-    self.segmentView = [[SegmentView alloc] init];
-    [self.segmentView.segmentControl addTarget:self
-                                        action:@selector(segmentControlDidChangedValue:)
-                              forControlEvents:UIControlEventValueChanged];
-    
-    [self.view addSubview:self.segmentView];
-    
-    
-    
-    //初始化segment控件对应的标题与视图
-    [self.controllers enumerateObjectsUsingBlock:^(UIViewController<SegmentControllerDelegate> *controller,NSUInteger idx, BOOL *stop) {
-        
-        NSString *title = [controller segmentTitle];
-        [self.segmentView.segmentControl insertSegmentWithTitle:title atIndex:idx animated:NO];
-    }];
-    
-    
-    // 初始化选中第一个segment
-    self.segmentView.segmentControl.selectedSegmentIndex = 0;
-    UIViewController<SegmentControllerDelegate> *controller = self.controllers[0];
-    [controller willMoveToParentViewController:self];
-    [self.view insertSubview:controller.view atIndex:0];
-    [self addChildViewController:controller];
-    [controller didMoveToParentViewController:self];
-    
-    
-    [self initScrollConstraint:controller];                //添加segment中对应的控件，主要是uiscrollView的约束
-    [self addObserverForPageController:controller];        //添加KVC
-    
-    self.currentDisplayController = self.controllers[0];
 }
 
 //private method----初始化随着滑动变化的约束，
@@ -204,18 +188,53 @@ UIViewController<SegmentControllerDelegate> *currentDisplayController;
                                                          multiplier:1
                                                            constant:0]];
     
-    // 初始中间segemnt的约束
-    self.segmentView.translatesAutoresizingMaskIntoConstraints = NO;
-    [self.view
-     addConstraint:[NSLayoutConstraint constraintWithItem:self.segmentView
-                                                attribute:NSLayoutAttributeLeft
-                                                relatedBy:NSLayoutRelationEqual
-                                                   toItem:self.view
-                                                attribute:NSLayoutAttributeLeft
-                                               multiplier:1
-                                                 constant:0]];
+    //测试使用uiView作中间导航视图
+    self.segNavBarView = [[ScrollNavBar alloc] initWithFrame:CGRectMake(0.0f, 0.0, SCREEN_WIDTH, SCREEN_HEIGHT)];
+    NSMutableArray* title = [NSMutableArray arrayWithObjects:@"公司概况",@"热招职位", nil];
+    self.segNavBarView.delegate = self; //滑动监听事件
+    [self.segNavBarView registerBrodcast];
+    [self.segNavBarView iniTitles:title];
+    
+    
+    //看过我的
+    self.comAbstractView = [[ComAbstractView alloc] initWithFrame:CGRectMake(0.0, 0.0, SCREEN_WIDTH, SCREEN_HEIGHT)];
+    self.comAbstractView.separatorInset = UIEdgeInsetsMake(0,10,0,10);  //top left right down
+    self.comAbstractView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];  //删除底部多余行，及分割线
+    //self.chkMeView.tag = 23;
+    self.segmentScroll = [[UIScrollView alloc] initWithFrame:CGRectMake(0.0, 42.5, SCREEN_WIDTH, SCREEN_HEIGHT)];
+    self.segmentScroll.contentSize = CGSizeMake(SCREEN_WIDTH * 2, SCREEN_HEIGHT);
+    self.segmentScroll.alwaysBounceHorizontal = YES;
+    self.segmentScroll.pagingEnabled = YES;
+    self.segmentScroll.delegate = self;
+    [self.segmentScroll addSubview:self.comAbstractView];
+    
+    
+    self.chkMeView2 = [[HasCheckMeView alloc] initWithFrame:CGRectMake(SCREEN_WIDTH, 0.0, SCREEN_WIDTH, SCREEN_HEIGHT)];
+    
+    _originalTopInset = self.headerHeight + self.segmentHeight;
+    // 针对屏幕底部存在tabBar的情况
+    CGFloat bottomInset = 0;
+    if (self.tabBarController.tabBar.hidden == NO) {
+        bottomInset = CGRectGetHeight(self.tabBarController.tabBar.bounds);
+    }
+    [self.chkMeView2 setContentInset:UIEdgeInsetsMake(_originalTopInset, 0, bottomInset, 0)];  //设置可滑动的尺寸 上 左 下 右
+    [self.segmentScroll addSubview:self.chkMeView2];
+    
+    
+    [self.view insertSubview:self.segmentScroll atIndex:0];
+    
+    [self.view addSubview:self.segNavBarView];
+    
+    self.segNavBarView.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.segNavBarView
+                                                          attribute:NSLayoutAttributeLeft
+                                                          relatedBy:NSLayoutRelationEqual
+                                                             toItem:self.view
+                                                          attribute:NSLayoutAttributeLeft
+                                                         multiplier:1
+                                                           constant:0]];
     [self.view addConstraint:[NSLayoutConstraint
-                              constraintWithItem:self.segmentView
+                              constraintWithItem:self.segNavBarView
                               attribute:NSLayoutAttributeRight
                               relatedBy:NSLayoutRelationEqual
                               toItem:self.view
@@ -224,7 +243,7 @@ UIViewController<SegmentControllerDelegate> *currentDisplayController;
                               constant:0]];
     
     [self.view addConstraint:[NSLayoutConstraint
-                              constraintWithItem:self.segmentView
+                              constraintWithItem:self.segNavBarView
                               attribute:NSLayoutAttributeTop
                               relatedBy:NSLayoutRelationEqual
                               toItem:self.headerView
@@ -232,15 +251,20 @@ UIViewController<SegmentControllerDelegate> *currentDisplayController;
                               multiplier:1
                               constant:0]];
     
-    [self.segmentView addConstraint:[NSLayoutConstraint
-                                     constraintWithItem:self.segmentView
-                                     attribute:NSLayoutAttributeHeight
-                                     relatedBy:NSLayoutRelationEqual
-                                     toItem:nil
-                                     attribute:0
-                                     multiplier:1
-                                     constant:self.segmentHeight]];
+    [self.segNavBarView addConstraint:[NSLayoutConstraint
+                                       constraintWithItem:self.segNavBarView
+                                       attribute:NSLayoutAttributeHeight
+                                       relatedBy:NSLayoutRelationEqual
+                                       toItem:nil
+                                       attribute:0
+                                       multiplier:1
+                                       constant:self.segmentHeight]];
     
+    
+    self.mCurDisplayView = self.comAbstractView;
+    
+    [self initScrollViewConstraint:self.segmentScroll];
+    [self addObserverForTableView:self.comAbstractView];
 }
 
 
@@ -249,89 +273,89 @@ UIViewController<SegmentControllerDelegate> *currentDisplayController;
  
  @param pageController 待布局的UIViewController
  */
-- (void)initScrollConstraint:(UIViewController<SegmentControllerDelegate> *)pageController {
-    
-    //获取pageController控件中能够滚动的视图
-    //类似的对应关系为： 如果是UItableViewControll----UItableView   UIConllectViewControler---UIconllectView
-    UIView *pageView = pageController.view;
-    if ([pageView respondsToSelector:@selector(setPreservesSuperviewLayoutMargins:)]) {
-        pageView.preservesSuperviewLayoutMargins = YES;
-    }
-    
-    pageView.translatesAutoresizingMaskIntoConstraints = NO;
-    [self.view addConstraint:[NSLayoutConstraint
-                              constraintWithItem:pageView
-                              attribute:NSLayoutAttributeLeading
-                              relatedBy:NSLayoutRelationEqual
-                              toItem:self.view
-                              attribute:NSLayoutAttributeLeading
-                              multiplier:1
-                              constant:0]];
-    
-    [self.view addConstraint:[NSLayoutConstraint
-                              constraintWithItem:pageView
-                              attribute:NSLayoutAttributeTrailing
-                              relatedBy:NSLayoutRelationEqual
-                              toItem:self.view
-                              attribute:NSLayoutAttributeTrailing
-                              multiplier:1
-                              constant:0]];
-    
-    //获取pageController控件中能够滚动的视图
-    UIScrollView *scrollView = [self scrollViewInPageController:pageController];
-    if (scrollView) {
-        
-        scrollView.alwaysBounceVertical = YES;
-        _originalTopInset = self.headerHeight + self.segmentHeight;
-        
-        // 针对屏幕底部存在tabBar的情况
-        CGFloat bottomInset = 0;
-        if (self.tabBarController.tabBar.hidden == NO) {
-            bottomInset = CGRectGetHeight(self.tabBarController.tabBar.bounds);
-        }
-        
-        [scrollView setContentInset:UIEdgeInsetsMake(_originalTopInset, 0, bottomInset, 0)];  //设置可滑动的尺寸 上 左 下 右
-        
-        //     fixed first time don't show header view
-        //        if (![self.hasShownControllers containsObject:pageController]) {
-        //            [self.hasShownControllers addObject:pageController];
-        //            [scrollView setContentOffset:CGPointMake(0, -self.headerHeight - self.segmentHeight)];
-        //        }
-        
-        [self.view addConstraint:[NSLayoutConstraint constraintWithItem:pageView
-                                                              attribute:NSLayoutAttributeTop
-                                                              relatedBy:NSLayoutRelationEqual
-                                                                 toItem:self.view
-                                                              attribute:NSLayoutAttributeTop
-                                                             multiplier:1
-                                                               constant:0]];
-        
-        [self.view addConstraint:[NSLayoutConstraint constraintWithItem:pageView
-                                                              attribute:NSLayoutAttributeBottom
-                                                              relatedBy:NSLayoutRelationEqual
-                                                                 toItem:self.view
-                                                              attribute:NSLayoutAttributeBottom
-                                                             multiplier:1
-                                                               constant:0]];
-    } else {    //处理控件中不存在UIScrollView的情况
-        
-        [self.view addConstraint:[NSLayoutConstraint constraintWithItem:pageView
-                                                              attribute:NSLayoutAttributeTop
-                                                              relatedBy:NSLayoutRelationEqual
-                                                                 toItem:self.segmentView
-                                                              attribute:NSLayoutAttributeBottom
-                                                             multiplier:1
-                                                               constant:0]];
-        
-        [self.view addConstraint:[NSLayoutConstraint constraintWithItem:pageView
-                                                              attribute:NSLayoutAttributeHeight
-                                                              relatedBy:NSLayoutRelationEqual
-                                                                 toItem:self.view
-                                                              attribute:NSLayoutAttributeHeight
-                                                             multiplier:1
-                                                               constant:-self.segmentHeight]];
-    }
-}
+//- (void)initScrollConstraint:(UIViewController<SegmentControllerDelegate> *)pageController {
+//    
+//    //获取pageController控件中能够滚动的视图
+//    //类似的对应关系为： 如果是UItableViewControll----UItableView   UIConllectViewControler---UIconllectView
+//    UIView *pageView = pageController.view;
+//    if ([pageView respondsToSelector:@selector(setPreservesSuperviewLayoutMargins:)]) {
+//        pageView.preservesSuperviewLayoutMargins = YES;
+//    }
+//    
+//    pageView.translatesAutoresizingMaskIntoConstraints = NO;
+//    [self.view addConstraint:[NSLayoutConstraint
+//                              constraintWithItem:pageView
+//                              attribute:NSLayoutAttributeLeading
+//                              relatedBy:NSLayoutRelationEqual
+//                              toItem:self.view
+//                              attribute:NSLayoutAttributeLeading
+//                              multiplier:1
+//                              constant:0]];
+//    
+//    [self.view addConstraint:[NSLayoutConstraint
+//                              constraintWithItem:pageView
+//                              attribute:NSLayoutAttributeTrailing
+//                              relatedBy:NSLayoutRelationEqual
+//                              toItem:self.view
+//                              attribute:NSLayoutAttributeTrailing
+//                              multiplier:1
+//                              constant:0]];
+//    
+//    //获取pageController控件中能够滚动的视图
+//    UIScrollView *scrollView = [self scrollViewInPageController:pageController];
+//    if (scrollView) {
+//        
+//        scrollView.alwaysBounceVertical = YES;
+//        _originalTopInset = self.headerHeight + self.segmentHeight;
+//        
+//        // 针对屏幕底部存在tabBar的情况
+//        CGFloat bottomInset = 0;
+//        if (self.tabBarController.tabBar.hidden == NO) {
+//            bottomInset = CGRectGetHeight(self.tabBarController.tabBar.bounds);
+//        }
+//        
+//        [scrollView setContentInset:UIEdgeInsetsMake(_originalTopInset, 0, bottomInset, 0)];  //设置可滑动的尺寸 上 左 下 右
+//        
+//        //     fixed first time don't show header view
+//        //        if (![self.hasShownControllers containsObject:pageController]) {
+//        //            [self.hasShownControllers addObject:pageController];
+//        //            [scrollView setContentOffset:CGPointMake(0, -self.headerHeight - self.segmentHeight)];
+//        //        }
+//        
+//        [self.view addConstraint:[NSLayoutConstraint constraintWithItem:pageView
+//                                                              attribute:NSLayoutAttributeTop
+//                                                              relatedBy:NSLayoutRelationEqual
+//                                                                 toItem:self.view
+//                                                              attribute:NSLayoutAttributeTop
+//                                                             multiplier:1
+//                                                               constant:0]];
+//        
+//        [self.view addConstraint:[NSLayoutConstraint constraintWithItem:pageView
+//                                                              attribute:NSLayoutAttributeBottom
+//                                                              relatedBy:NSLayoutRelationEqual
+//                                                                 toItem:self.view
+//                                                              attribute:NSLayoutAttributeBottom
+//                                                             multiplier:1
+//                                                               constant:0]];
+//    } else {    //处理控件中不存在UIScrollView的情况
+//        
+//        [self.view addConstraint:[NSLayoutConstraint constraintWithItem:pageView
+//                                                              attribute:NSLayoutAttributeTop
+//                                                              relatedBy:NSLayoutRelationEqual
+//                                                                 toItem:self.segmentView
+//                                                              attribute:NSLayoutAttributeBottom
+//                                                             multiplier:1
+//                                                               constant:0]];
+//        
+//        [self.view addConstraint:[NSLayoutConstraint constraintWithItem:pageView
+//                                                              attribute:NSLayoutAttributeHeight
+//                                                              relatedBy:NSLayoutRelationEqual
+//                                                                 toItem:self.view
+//                                                              attribute:NSLayoutAttributeHeight
+//                                                             multiplier:1
+//                                                               constant:-self.segmentHeight]];
+//    }
+//}
 
 
 /**
@@ -340,22 +364,22 @@ UIViewController<SegmentControllerDelegate> *currentDisplayController;
  @param controller 待获取的UIViewController
  @return UIScrollView
  */
-- (UIScrollView *)scrollViewInPageController:(UIViewController<SegmentControllerDelegate> *)controller {
-    
-    if ([controller respondsToSelector:@selector(streachScrollView)]) {
-        
-        return [controller streachScrollView];
-        
-    } else if ([controller.view isKindOfClass:[UIScrollView class]]) {
-        
-        return (UIScrollView *)controller.view;     //处理只有UIScrollViewController情况
-        
-    } else {
-        
-        return nil;
-    }
-    
-}
+//- (UIScrollView *)scrollViewInPageController:(UIViewController<SegmentControllerDelegate> *)controller {
+//    
+//    if ([controller respondsToSelector:@selector(streachScrollView)]) {
+//        
+//        return [controller streachScrollView];
+//        
+//    } else if ([controller.view isKindOfClass:[UIScrollView class]]) {
+//        
+//        return (UIScrollView *)controller.view;     //处理只有UIScrollViewController情况
+//        
+//    } else {
+//        
+//        return nil;
+//    }
+//    
+//}
 
 #pragma mark - add / remove obsever for page scrollView
 
@@ -364,38 +388,38 @@ UIViewController<SegmentControllerDelegate> *currentDisplayController;
  
  @param controller 待观察中的UIViewController 中滚动视图
  */
-- (void)addObserverForPageController:(UIViewController<SegmentControllerDelegate> *)controller {
-    
-    UIScrollView *scrollView = [self scrollViewInPageController:controller];
-    if (scrollView != nil) {
-        [scrollView addObserver:self
-                     forKeyPath:NSStringFromSelector(@selector(contentOffset))
-                        options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld
-                        context:&_ARSEGMENTPAGE_CURRNTPAGE_SCROLLVIEWOFFSET];
-        
-        [scrollView addObserver:self
-                     forKeyPath:NSStringFromSelector(@selector(contentInset))
-                        options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld
-                        context:&_ARSEGMENTPAGE_CURRNTPAGE_SCROLLVIEWINSET];
-    }
-}
-
-- (void)removeObseverForPageController:(UIViewController<SegmentControllerDelegate> *)controller {
-    
-    UIScrollView *scrollView = [self scrollViewInPageController:controller];
-    if (scrollView != nil) {
-        @try {
-            [scrollView removeObserver:self
-                            forKeyPath:NSStringFromSelector(@selector(contentOffset))];
-            
-            [scrollView removeObserver:self
-                            forKeyPath:NSStringFromSelector(@selector(contentInset))];
-        } @catch (NSException *exception) {
-            NSLog(@"exception is %@", exception);
-        } @finally {
-        }
-    }
-}
+//- (void)addObserverForPageController:(UIViewController<SegmentControllerDelegate> *)controller {
+//    
+//    UIScrollView *scrollView = [self scrollViewInPageController:controller];
+//    if (scrollView != nil) {
+//        [scrollView addObserver:self
+//                     forKeyPath:NSStringFromSelector(@selector(contentOffset))
+//                        options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld
+//                        context:&_ARSEGMENTPAGE_CURRNTPAGE_SCROLLVIEWOFFSET];
+//        
+//        [scrollView addObserver:self
+//                     forKeyPath:NSStringFromSelector(@selector(contentInset))
+//                        options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld
+//                        context:&_ARSEGMENTPAGE_CURRNTPAGE_SCROLLVIEWINSET];
+//    }
+//}
+//
+//- (void)removeObseverForPageController:(UIViewController<SegmentControllerDelegate> *)controller {
+//    
+//    UIScrollView *scrollView = [self scrollViewInPageController:controller];
+//    if (scrollView != nil) {
+//        @try {
+//            [scrollView removeObserver:self
+//                            forKeyPath:NSStringFromSelector(@selector(contentOffset))];
+//            
+//            [scrollView removeObserver:self
+//                            forKeyPath:NSStringFromSelector(@selector(contentInset))];
+//        } @catch (NSException *exception) {
+//            NSLog(@"exception is %@", exception);
+//        } @finally {
+//        }
+//    }
+//}
 
 #pragma mark - obsever delegate methods
 
@@ -500,58 +524,220 @@ UIViewController<SegmentControllerDelegate> *currentDisplayController;
 }
 
 #pragma mark - event methods
-
-- (void)segmentControlDidChangedValue:(UISegmentedControl *)sender {
-    
-    // remove obsever
-    [self removeObseverForPageController:self.currentDisplayController];
-    
-    // add new controller
-    NSUInteger index = [sender selectedSegmentIndex];
-    UIViewController<SegmentControllerDelegate> *controller = self.controllers[index];
-    
-    //先移除旧的UIViewControll
-    [self.currentDisplayController willMoveToParentViewController:nil];
-    [self.currentDisplayController.view removeFromSuperview];
-    [self.currentDisplayController removeFromParentViewController];
-    [self.currentDisplayController didMoveToParentViewController:nil];
-    
-    //再将选中的UIViewControll 添加进来
-    [controller willMoveToParentViewController:self];
-    [self.view insertSubview:controller.view atIndex:0];
-    [self addChildViewController:controller];
-    [controller didMoveToParentViewController:self];
-    
-    // reset current controller
-    self.currentDisplayController = controller;
-    // layout new controller
-    [self initScrollConstraint:controller];
-    
-    [self.view setNeedsLayout];
-    [self.view layoutIfNeeded];
-    
-    // trigger to fixed header constraint
-    UIScrollView *scrollView = [self scrollViewInPageController:controller];
-    if (self.headerHeightConstraint.constant != self.headerHeight) {
-        if (scrollView.contentOffset.y >= -(self.segmentHeight + self.headerHeight) && scrollView.contentOffset.y <= -self.segmentHeight) {
-            [scrollView setContentOffset:CGPointMake(0, -self.segmentHeight - self.headerHeightConstraint.constant)];
-        }
-    }
-    // add obsever
-    [self addObserverForPageController:self.currentDisplayController];
-    [scrollView setContentOffset:scrollView.contentOffset];
-}
+//
+//- (void)segmentControlDidChangedValue:(UISegmentedControl *)sender {
+//    
+//    // remove obsever
+//    [self removeObseverForPageController:self.currentDisplayController];
+//    
+//    // add new controller
+//    NSUInteger index = [sender selectedSegmentIndex];
+//    UIViewController<SegmentControllerDelegate> *controller = self.controllers[index];
+//    
+//    //先移除旧的UIViewControll
+//    [self.currentDisplayController willMoveToParentViewController:nil];
+//    [self.currentDisplayController.view removeFromSuperview];
+//    [self.currentDisplayController removeFromParentViewController];
+//    [self.currentDisplayController didMoveToParentViewController:nil];
+//    
+//    //再将选中的UIViewControll 添加进来
+//    [controller willMoveToParentViewController:self];
+//    [self.view insertSubview:controller.view atIndex:0];
+//    [self addChildViewController:controller];
+//    [controller didMoveToParentViewController:self];
+//    
+//    // reset current controller
+//    self.currentDisplayController = controller;
+//    // layout new controller
+//    [self initScrollConstraint:controller];
+//    
+//    [self.view setNeedsLayout];
+//    [self.view layoutIfNeeded];
+//    
+//    // trigger to fixed header constraint
+//    UIScrollView *scrollView = [self scrollViewInPageController:controller];
+//    if (self.headerHeightConstraint.constant != self.headerHeight) {
+//        if (scrollView.contentOffset.y >= -(self.segmentHeight + self.headerHeight) && scrollView.contentOffset.y <= -self.segmentHeight) {
+//            [scrollView setContentOffset:CGPointMake(0, -self.segmentHeight - self.headerHeightConstraint.constant)];
+//        }
+//    }
+//    // add obsever
+//    [self addObserverForPageController:self.currentDisplayController];
+//    [scrollView setContentOffset:scrollView.contentOffset];
+//}
 
 #pragma mark - manage memory methods
 //移除当前的滚动视图的滑动事件监听器
 - (void)dealloc {
     
-    [self removeObseverForPageController:self.currentDisplayController];
+    //[self removeObseverForPageController:self.currentDisplayController];
+    
+    [self removeObseverForTableView:self.mCurDisplayView];
 }
 
 - (void)didReceiveMemoryWarning {
     
     [super didReceiveMemoryWarning];
 }
+
+
+
+
+
+
+//测试不使用UIViewController
+- (void)initScrollViewConstraint:(UIScrollView *)tableView {
+    
+    //获取pageController控件中能够滚动的视图
+    //类似的对应关系为： 如果是UItableViewControll----UItableView   UIConllectViewControler---UIconllectView
+    UIView *pageView = tableView;   //note 1
+    if ([pageView respondsToSelector:@selector(setPreservesSuperviewLayoutMargins:)]) {
+        pageView.preservesSuperviewLayoutMargins = YES;
+    }
+    
+    pageView.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.view addConstraint:[NSLayoutConstraint
+                              constraintWithItem:pageView
+                              attribute:NSLayoutAttributeLeading
+                              relatedBy:NSLayoutRelationEqual
+                              toItem:self.view
+                              attribute:NSLayoutAttributeLeading
+                              multiplier:1
+                              constant:0]];
+    
+    [self.view addConstraint:[NSLayoutConstraint
+                              constraintWithItem:pageView
+                              attribute:NSLayoutAttributeTrailing
+                              relatedBy:NSLayoutRelationEqual
+                              toItem:self.view
+                              attribute:NSLayoutAttributeTrailing
+                              multiplier:1
+                              constant:0]];
+    
+    //获取pageController控件中能够滚动的视图
+    UIScrollView *scrollView = self.mCurDisplayView; //处理滚动列表中UIscrollView 注意与 note1的区别
+    if (scrollView) {
+        
+        scrollView.alwaysBounceVertical = YES;
+        _originalTopInset = self.headerHeight + self.segmentHeight;
+        
+        // 针对屏幕底部存在tabBar的情况
+        CGFloat bottomInset = 0;
+        if (self.tabBarController.tabBar.hidden == NO) {
+            bottomInset = CGRectGetHeight(self.tabBarController.tabBar.bounds);
+        }
+        
+        [scrollView setContentInset:UIEdgeInsetsMake(_originalTopInset, 0, bottomInset, 0)];  //设置可滑动的尺寸 上 左 下 右
+        
+        //     fixed first time don't show header view
+        //        if (![self.hasShownControllers containsObject:pageController]) {
+        //            [self.hasShownControllers addObject:pageController];
+        //            [scrollView setContentOffset:CGPointMake(0, -self.headerHeight - self.segmentHeight)];
+        //        }
+        
+        [self.view addConstraint:[NSLayoutConstraint constraintWithItem:pageView
+                                                              attribute:NSLayoutAttributeTop
+                                                              relatedBy:NSLayoutRelationEqual
+                                                                 toItem:self.view
+                                                              attribute:NSLayoutAttributeTop
+                                                             multiplier:1
+                                                               constant:0]];
+        
+        [self.view addConstraint:[NSLayoutConstraint constraintWithItem:pageView
+                                                              attribute:NSLayoutAttributeBottom
+                                                              relatedBy:NSLayoutRelationEqual
+                                                                 toItem:self.view
+                                                              attribute:NSLayoutAttributeBottom
+                                                             multiplier:1
+                                                               constant:0]];
+    }
+}
+
+
+- (void)addObserverForTableView:(UITableView*)tableView {
+    
+    UIScrollView *scrollView = tableView;
+    if (scrollView != nil) {
+        [scrollView addObserver:self
+                     forKeyPath:NSStringFromSelector(@selector(contentOffset))
+                        options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld
+                        context:&_ARSEGMENTPAGE_CURRNTPAGE_SCROLLVIEWOFFSET];
+        
+        [scrollView addObserver:self
+                     forKeyPath:NSStringFromSelector(@selector(contentInset))
+                        options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld
+                        context:&_ARSEGMENTPAGE_CURRNTPAGE_SCROLLVIEWINSET];
+    }
+}
+
+
+- (void)removeObseverForTableView:(UITableView *)tableView {
+    
+    UIScrollView *scrollView = tableView;
+    if (scrollView != nil) {
+        @try {
+            [scrollView removeObserver:self forKeyPath:NSStringFromSelector(@selector(contentOffset))];
+            
+            [scrollView removeObserver:self forKeyPath:NSStringFromSelector(@selector(contentInset))];
+        } @catch (NSException *exception) {
+            NSLog(@"exception is %@", exception);
+        } @finally {
+        }
+    }
+}
+
+//中间滑动segment导航栏滑动监听事件
+-(void) onChangeListener:(NSInteger) index{
+    
+    [self.segmentScroll scrollRectToVisible:CGRectMake(SCREEN_WIDTH * index, self.segmentScroll.frame.origin.y,
+                                                       self.segmentScroll.frame.size.width, self.segmentScroll.frame.size.height) animated:NO];
+    
+    [self updateCurScrollViewConstraint:index];
+    
+}
+
+//UIScrollView滑动监听事件
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    
+    NSDictionary* scroll = [NSDictionary dictionaryWithObject:scrollView forKey:@"scroll"];
+    [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:@"updateLabelStatus" object:scroll userInfo:nil]];
+    
+    [self updateCurScrollViewConstraint:scrollView.contentOffset.x / SCREEN_WIDTH];
+}
+
+//private method ---更新当前展示页面的约束
+-(void) updateCurScrollViewConstraint:(NSInteger) index{
+    
+    [self removeObseverForTableView:self.mCurDisplayView];
+    
+    self.mCurDisplayView = index == 0 ? self.comAbstractView : self.chkMeView2;
+    
+    
+    self.mCurDisplayView.alwaysBounceVertical = YES;
+    _originalTopInset = self.headerHeight + self.segmentHeight;
+    
+    // 针对屏幕底部存在tabBar的情况
+    CGFloat bottomInset = 0;
+    if (self.tabBarController.tabBar.hidden == NO) {
+        bottomInset = CGRectGetHeight(self.tabBarController.tabBar.bounds);
+    }
+    
+    [self.mCurDisplayView setContentInset:UIEdgeInsetsMake(_originalTopInset, 0, bottomInset, 0)];  //设置可滑动的尺寸 上 左 下 右
+    
+    [self.view setNeedsLayout];
+    [self.view layoutIfNeeded];
+    
+    UIScrollView *scrollView = self.mCurDisplayView;
+    if (self.headerHeightConstraint.constant != self.headerHeight) {
+        if (scrollView.contentOffset.y >= -(self.segmentHeight + self.headerHeight) && scrollView.contentOffset.y <= -self.segmentHeight) {
+            [scrollView setContentOffset:CGPointMake(0, -self.segmentHeight - self.headerHeightConstraint.constant)];
+        }
+    }
+    
+    [self addObserverForTableView:self.mCurDisplayView];
+    //[scrollView setContentOffset:CGPointZero];
+    
+}
+
 
 @end

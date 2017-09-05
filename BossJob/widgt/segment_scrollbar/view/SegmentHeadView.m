@@ -27,10 +27,6 @@
 
 - (void)_baseConfigs {
     self.imageView = [[UIImageView alloc] init];
-    
-    self.imageView.backgroundColor = [UIColor greenColor];
-    NSLog(@"30----------:%f",self.frame.size.height);
-    
     self.imageView.image = [UIImage imageNamed:@"listdownload.jpg"];
     self.imageView.contentMode = UIViewContentModeScaleAspectFill;
     self.imageView.clipsToBounds = YES;

@@ -196,8 +196,34 @@
 
 -(void)dealloc{
     [self.segmentScroll removeObserver:self forKeyPath:@"contentOffset" context:nil];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"updateLabelStatus" object:nil];
+
 }
 //-------------------kvo 实现观察主题 end----------------
 
+
+//处理在其他页面不方便更新指示线与标签的状态
+-(void)registerBrodcast{
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateLabelStatus:) name:@"updateLabelStatus" object:nil];
+}
+
+-(void) updateLabelStatus:(NSNotification *)msg{
+    
+    
+    NSDictionary* tmpInfo = [msg object];
+    UIScrollView* scroll = (UIScrollView*)[tmpInfo objectForKey:@"scroll"];
+    
+    
+    [self.bottomLine.layer removeAllAnimations];
+    CGRect frame = self.bottomLine.frame;
+    frame.origin.x = scroll.contentOffset.x / SCREEN_WIDTH * self.itemWidth;
+    self.bottomLine.frame = frame;
+    [self.bottomLine layoutIfNeeded];
+    
+    self.nCurIndex = scroll.contentOffset.x / SCREEN_WIDTH;
+    [self updateTitleBtnStatus:self.nCurIndex];
+}
 
 @end
