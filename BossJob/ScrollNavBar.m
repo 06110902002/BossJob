@@ -181,6 +181,54 @@
     CGPoint oldOffset = [change[NSKeyValueChangeOldKey] CGPointValue];
     CGFloat oldOffsetX = oldOffset.x;
     CGFloat deltaOfOffsetX = offset.x - oldOffsetX;
+    
+    //下面为下划线跟随弹性  效果
+//    NSValue *oldvalue = change[NSKeyValueChangeOldKey];
+//    NSValue *newvalue = change[NSKeyValueChangeNewKey];
+//    CGFloat oldoffset_x = oldvalue.UIOffsetValue.horizontal;
+//    CGFloat newoffset_x = newvalue.UIOffsetValue.horizontal;
+//    //跟随滑动
+//    CGFloat contentOffsetX = newoffset_x;
+//    CGFloat sWidth =  SCREEN_WIDTH;
+//    CGFloat content_X = (newoffset_x / sWidth);
+//    NSArray *arr = [[NSString stringWithFormat:@"%f",content_X] componentsSeparatedByString:@"."];
+//    int num = [arr[0] intValue]; //找到滑动的索引
+//
+//    CGFloat scale = content_X - num;
+//    int selectIndex = contentOffsetX / SCREEN_WIDTH;
+//
+//    UIButton*_btnRight;
+//    UIButton*_btnLeft;
+//    NSLog(@"650---------contentOffsetX:%f  oldoffsetX:%f",contentOffsetX,oldoffset_x);
+//    // 拖拽
+//    if (contentOffsetX <= oldoffset_x ){
+//        selectIndex++;
+//        if (selectIndex - 1 < 0 || selectIndex > self.btnList.count - 1) {
+//            return;
+//        }
+//        _btnRight = [self.btnList objectAtIndex:selectIndex];
+//        _btnLeft = [self.btnList objectAtIndex:selectIndex - 1];
+//    } else if (contentOffsetX > oldoffset_x ){
+//        if (selectIndex + 1 > self.btnList.count - 1) {
+//                   return;
+//               }
+//        _btnRight = [self.btnList objectAtIndex:selectIndex + 1];
+//        _btnLeft = [self.btnList objectAtIndex:selectIndex];
+//
+//    }
+//    if (!_btnRight || !_btnLeft) {
+//           return;
+//       }
+//
+//    CGRect rect = self.bottomLine.frame;
+//    if (scale < 0.5 ) {
+//        rect.size.width = 10 + ( _btnRight.center.x-_btnLeft.center.x) * scale*2;
+//        rect.origin.x = _btnLeft.center.x -10/2;
+//    }else if(scale >= 0.5 ){
+//        rect.size.width =  10+(_btnRight.center.x-_btnLeft.center.x) * (1-scale)*2;
+//        rect.origin.x = _btnLeft.center.x +  2*(scale-0.5)*(_btnRight.center.x - _btnLeft.center.x)-10/2;
+//    }
+//    self.bottomLine.frame = rect;
 
 
     [self.bottomLine.layer removeAllAnimations];
